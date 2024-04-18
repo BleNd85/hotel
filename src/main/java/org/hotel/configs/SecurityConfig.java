@@ -23,16 +23,19 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(request -> request.requestMatchers("/", "/css/*", "/register", "/login", "/error_page").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").permitAll())
-                .logout(LogoutConfigurer::permitAll);
+                        .formLogin(form -> form.loginPage("/login")
+                        .defaultSuccessUrl("/personal_page", true).permitAll())
+                        .logout(LogoutConfigurer::permitAll);
         return http.build();
     }
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
-    UserDetailsService userDetailsService(){
+    UserDetailsService userDetailsService() {
         return new CustomUserService();
     }
 

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Personal page</title>
 </head>
 <body>
-<h1>Welcome to the personal page!<span th:text="${userLogin}"></span></h1>
+<h1>Welcome to the personal page <span th:text="${#authentication.principal.username}"> </span>!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="logout">
+</form>
 </body>
 </html>

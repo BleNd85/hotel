@@ -1,9 +1,10 @@
 package org.hotel.services;
 
+//import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
+import org.hotel.models.RoleModel;
 import org.hotel.models.UserModel;
 import org.hotel.repositories.UserRepository;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,22 +25,32 @@ public class UserService {
         if (login == null || password == null) {
             return null;
         } else {
-            if (userRepository.findFirstByLogin(login).isPresent()) {
+            if (userRepository.findFirstByUsername(login).isPresent()) {
                 return null;
             }
             if (userRepository.findFirstByEmail(email).isPresent()) {
                 return null;
             }
             UserModel userModel = new UserModel();
-            userModel.setLogin(login);
+            userModel.setUsername(login);
             userModel.setPassword(bCryptPasswordEncoder.encode(password));
             userModel.setEmail(email);
-            userModel.setRole("USER");
+            userModel.setRole(RoleModel.USER);
             return userRepository.save(userModel);
         }
     }
+    //delete on release
+//    @PostConstruct
+//    public void postConstruct() {
+//        UserModel userAdmin = new UserModel();
+//        userAdmin.setRole(RoleModel.ADMIN);
+//        userAdmin.setLogin("admin");
+//        userAdmin.setPassword(bCryptPasswordEncoder.encode("admin"));
+//        userRepository.save(userAdmin);
+//    }
 
-    public UserModel findByLogin(String login) throws UsernameNotFoundException {
-        return userRepository.findFirstByLogin(login).orElse(null);
+
+    public UserModel findByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findFirstByUsername(username).orElse(null);
     }
 }
