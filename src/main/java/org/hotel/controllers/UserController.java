@@ -23,8 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(Model model) {
-        model.addAttribute("loginRequest", new UserModel());
+    public String getLoginPage() {
         return "login";
     }
 
@@ -33,17 +32,5 @@ public class UserController {
         System.out.println("register request" + userModel);
         UserModel registeredUser = userService.registerUser(userModel.getLogin(), userModel.getPassword(), userModel.getEmail());
         return registeredUser == null ? "error_page" : "redirect:/login";
-    }
-
-    @PostMapping("/login")
-    public String login(@ModelAttribute UserModel userModel, Model model) {
-        System.out.println("login request" + userModel);
-        UserModel authenticatedUser = userService.authentication(userModel.getLogin(), userModel.getPassword());
-        if (authenticatedUser != null) {
-            model.addAttribute("userLogin", authenticatedUser.getLogin());
-            return "personal_page";
-        } else {
-            return "error_page";
-        }
     }
 }

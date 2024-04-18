@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="form">
-    <form method="post" action="register" th:object="${registerRequest}">
+    <form method="post" th:action="@{/register}" th:object="${registerRequest}">
     <div class="wrapper">
         <div class="title">
             Registration Form

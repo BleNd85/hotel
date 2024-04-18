@@ -9,14 +9,23 @@ import java.util.Objects;
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id ;
+    private Integer id ;
 
-    String login;
-    String password;
-    String email;
+    private String login;
+    private String password;
+    private String email;
+    private String role;
 
     public Integer getId() {
         return id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setId(Integer id) {
@@ -51,21 +60,23 @@ public class UserModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserModel user = (UserModel) o;
-        return Objects.equals(id, user.id) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(email, user.email);
+        UserModel userModel = (UserModel) o;
+        return Objects.equals(id, userModel.id) && Objects.equals(login, userModel.login) && Objects.equals(password, userModel.password) && Objects.equals(email, userModel.email) && Objects.equals(role, userModel.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, email);
+        return Objects.hash(id, login, password, email, role);
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserModel{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
