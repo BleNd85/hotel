@@ -33,4 +33,15 @@ public class UserController {
         UserModel registeredUser = userService.registerUser(userModel.getUsername(), userModel.getPassword(), userModel.getEmail());
         return registeredUser == null ? "error_page" : "redirect:/login";
     }
+
+    @GetMapping("/personal_page")
+    public String getPersonalPage() {
+        return "personal_page";
+    }
+
+    @PostMapping("/logout")
+    public String logout() {
+        return "redirect:/home_page";
+    }
+
 }
