@@ -1,31 +1,109 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <style>
+        .highlight {
+            font-size: 15px;
+        }
+        .abc{
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .background-square {
+            position: fixed;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 30px;
+            width: 600px;
+            height: 420px;
+            opacity: 90%;
+            background-color: #E6E6FA;
+            padding: 20px;
+            box-shadow:
+                    inset 0 -3em 3em rgba(0, 0, 32, 0.1),
+                    0 0 0 2px rgba(255, 255, 255, 0),
+                    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        .user_card {
+            position: relative;
+            top: 25%;
+        }
+        .custom-text {
+            font-family: Monaco, sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            color: #333;
+            text-align: center;
+            line-height: 1.5;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+
+        }
+    </style>
 </head>
+
 <body>
-<div class="form">
-    <form method="post" th:action="@{/login}">
-        <div class="wrapper">
-            <div class="title">
-                Log in
+<img src="backjground.jpg" class="background" />
+<div class="container h-100">
+
+
+    <div class="d-flex justify-content-center h-100">
+
+        <div class="user_card">
+            <div class="background-square"></div>
+            <p class="custom-text"> <span class ="abc">Authentication </span> </p>
+            <p class="custom-text">Please enter your email and password.</p>
+            <div class="d-flex justify-content-center form_container">
+                <form>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" name="" class="form-control input_user" value="" placeholder="username">
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" name="" class="form-control input_pass" value="" placeholder="password">
+                    </div>
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <button type="button" name="button" class="btn login_btn">Login</button>
+                    </div>
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-center links">
+                            <p class =custom-text > <span class="highlight">Don't have an account? <a href="#" class="ml-2">Sign Up</a> </span> .</p>
+                        </div>
+                    </div>
+
+                </form>
             </div>
-            <div class="field">
-                <input type="text" name="username" placeholder="Username" required>
-            </div>
-            <div class="field">
-                <input type="password" name="password" placeholder="Password" required>
-            </div>
-            <div class="field">
-                <input type="submit" value="Log in">
-            </div>
-            <div class="signup-link">
-                Not a member? <a href="/register">Signup now</a>
-            </div>
+
         </div>
-    </form>
+    </div>
 </div>
 </body>
+
 </html>
