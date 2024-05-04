@@ -1,109 +1,56 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
-
     <title>Login Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <style>
-        .highlight {
-            font-size: 15px;
-        }
-        .abc{
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-        .background-square {
-            position: fixed;
-            top: 42%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 30px;
-            width: 600px;
-            height: 420px;
-            opacity: 90%;
-            background-color: #E6E6FA;
-            padding: 20px;
-            box-shadow:
-                    inset 0 -3em 3em rgba(0, 0, 32, 0.1),
-                    0 0 0 2px rgba(255, 255, 255, 0),
-                    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-            z-index: -1;
-        }
-
-        .user_card {
-            position: relative;
-            top: 25%;
-        }
-        .custom-text {
-            font-family: Monaco, sans-serif;
-            font-size: 20px;
-            font-weight: normal;
-            color: #333;
-            text-align: center;
-            line-height: 1.5;
-            letter-spacing: 1px;
-            text-decoration: none;
-        }
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-
 <body>
-<img src="backjground.jpg" class="background" />
-<div class="container h-100">
+<!--<img src="background.jpg" class="background" alt="background"/>-->
+<section class="text-center">
+    <div class="p-5 bg-image" style="
+        background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+        height: 300px;
+        "></div>
+    <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="
+        margin-top: -100px;
+        backdrop-filter: blur(30px);
+        ">
+        <div class="card-body py-5 px-md-5">
 
-
-    <div class="d-flex justify-content-center h-100">
-
-        <div class="user_card">
-            <div class="background-square"></div>
-            <p class="custom-text"> <span class ="abc">Authentication </span> </p>
-            <p class="custom-text">Please enter your email and password.</p>
-            <div class="d-flex justify-content-center form_container">
-                <form>
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="fw-bold mb-5">Log in now</h2>
+                    <form>
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="email" id="form3Example3" class="form-control"/>
+                            <label class="form-label" for="form3Example3">Username</label>
                         </div>
-                        <input type="text" name="" class="form-control input_user" value="" placeholder="username">
-                    </div>
-                    <div class="input-group mb-2">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <input type="password" name="" class="form-control input_pass" value="" placeholder="password">
-                    </div>
-                    <div class="d-flex justify-content-center mt-3 login_container">
-                        <button type="button" name="button" class="btn login_btn">Login</button>
-                    </div>
-                    <div class="mt-4">
-                        <div class="d-flex justify-content-center links">
-                            <p class =custom-text > <span class="highlight">Don't have an account? <a href="#" class="ml-2">Sign Up</a> </span> .</p>
-                        </div>
-                    </div>
 
-                </form>
+                        <!-- Password input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="password" id="form3Example4" class="form-control"/>
+                            <label class="form-label" for="form3Example4">Password</label>
+                        </div>
+
+
+                        <!-- Submit button -->
+                        <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                                class="btn btn-primary btn-block mb-4">
+                            Sign up
+                        </button>
+
+                        <!-- Register buttons -->
+                    </form>
+                </div>
             </div>
-
         </div>
     </div>
-</div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous">
+</script>
 </body>
-
 </html>
