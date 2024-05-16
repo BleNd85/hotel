@@ -15,6 +15,24 @@ public class UserModel {
     private String password;
     private String email;
     private RoleModel role;
+    private String name;
+    private String surname;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
     public void setRole(RoleModel role) {
         this.role = role;
@@ -73,10 +91,12 @@ public class UserModel {
     public String toString() {
         return "UserModel{" +
                 "id=" + id +
-                ", login='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
+                ", role=" + role +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 '}';
     }
 }

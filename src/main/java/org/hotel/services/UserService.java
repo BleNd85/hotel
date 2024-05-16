@@ -1,6 +1,7 @@
 package org.hotel.services;
 
 //import jakarta.annotation.PostConstruct;
+
 import jakarta.transaction.Transactional;
 import org.hotel.models.RoleModel;
 import org.hotel.models.UserModel;
@@ -52,5 +53,9 @@ public class UserService {
 
     public UserModel findByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findFirstByUsername(username).orElse(null);
+    }
+
+    public void deleteUser(Integer userId) {
+        userRepository.deleteById(userId);
     }
 }

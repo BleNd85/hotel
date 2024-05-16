@@ -43,5 +43,4 @@ public class UserController {
     public String logout() {
         return "redirect:/home_page";
     }
-
 }
