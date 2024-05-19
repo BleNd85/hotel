@@ -1,5 +1,7 @@
 package org.hotel.controllers;
 
+import org.hotel.models.HotelModel;
+import org.hotel.models.RoomModel;
 import org.hotel.models.UserModel;
 import org.hotel.services.HotelService;
 import org.hotel.services.RoomService;
@@ -36,13 +38,13 @@ public class AdminController {
         model.addAttribute("users", users);
         return "user_management";
     }
-    @GetMapping("/hotelManagement")
+    @GetMapping("/hotel-management")
     public <hotelModel> String getHotelManagement(Model model) {
         List<HotelModel> hotels = hotelService.getAll();
         model.addAttribute("hotels", hotels);
         return "hotel_management";
     }
-    @GetMapping("/roomManagement")
+    @GetMapping("/room-management")
     public <roomModel> String getRoomManagement(Model model) {
         List<RoomModel> rooms = roomService.getAll();
         model.addAttribute("rooms", rooms);
