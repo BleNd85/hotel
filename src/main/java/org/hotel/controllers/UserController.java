@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class UserController {
     private final UserService userService;
@@ -42,5 +44,12 @@ public class UserController {
     @PostMapping("/logout")
     public String logout() {
         return "redirect:/home_page";
+    }
+
+    @GetMapping("/customerManagement")
+    public String getCustomerManagement(Model model) {
+        List<UserModel> users = userService.getAllUsers(); // Получаем список всех пользователей
+        model.addAttribute("users", users); // Добавляем список пользователей в модель
+        return "customer_management"; // Возвращаем имя шаблона
     }
 }

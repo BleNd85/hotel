@@ -1,7 +1,5 @@
 package org.hotel.services;
 
-//import jakarta.annotation.PostConstruct;
-
 import jakarta.transaction.Transactional;
 import org.hotel.models.RoleModel;
 import org.hotel.models.UserModel;
@@ -10,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 @Service
 public class UserService {
@@ -42,7 +41,21 @@ public class UserService {
             return userRepository.save(userModel);
         }
     }
-    //delete on release
+
+    public UserModel findByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findFirstByUsername(username).orElse(null);
+    }
+
+    public void deleteUser(Integer userId) {
+        userRepository.deleteById(userId);
+    }
+
+    public List<UserModel> getAllUsers() {
+        return userRepository.findAll();
+    }
+}
+
+//delete on release
 //    @PostConstruct
 //    public void postConstruct() {
 //        UserModel userAdmin = new UserModel();
@@ -52,12 +65,3 @@ public class UserService {
 //        userRepository.save(userAdmin);
 //    }
 
-
-    public UserModel findByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findFirstByUsername(username).orElse(null);
-    }
-
-    public void deleteUser(Integer userId) {
-        userRepository.deleteById(userId);
-    }
-}
