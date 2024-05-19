@@ -16,8 +16,9 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
-            <th>location</th>
+            <th>Location</th>
             <th>Creation Date</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -28,40 +29,35 @@
             <td th:text="${hotel.location}"></td>
             <td th:text="${hotel.created_at}"></td>
             <td>
-                <form th:action="@{/hotel-management/delete-hotel}" method="post">
-                    <input type="hidden" name="hotelId" th:value="${hotel.id}"/>
-                    <button type="submit" class="btn btn-danger">Видалити</button>
-                </form>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteHotelModal"
+                        th:attr="data-id=${hotel.id}">Видалити
+                </button>
             </td>
         </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addHotel">Додати
-        готель
-    </button>
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addHotel">Додати готель</button>
 </div>
-<div class="modal fade" id="addHotel" tabindex="-1" aria-labelledby="addHotel" aria-hidden="true"
-     role="dialog">
+
+<div class="modal fade" id="addHotel" tabindex="-1" aria-labelledby="addHotel" aria-hidden="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addHotelLabel">Додати готель</h5>
             </div>
-            <div class="modal-footer justify-content-start">
+            <div class="modal-body">
                 <form th:action="@{/hotel-management/add-hotel}" method="post">
-                    <div class="form-outline">
-                        <input type="text" name="name" id="name"
-                               class="form-control bg-transparent text-dark"/>
+                    <div class="form-outline mb-3">
+                        <input type="text" name="name" id="name" class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="name">Name</label>
                     </div>
-                    <div class="form-outline">
+                    <div class="form-outline mb-3">
                         <input type="text" name="description" id="description"
                                class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="description">Description</label>
                     </div>
-                    <div class="form-outline">
-                        <input type="text" name="location" id="location"
-                               class="form-control bg-transparent text-dark"/>
+                    <div class="form-outline mb-3">
+                        <input type="text" name="location" id="location" class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="location">Location</label>
                     </div>
                     <button type="submit" class="btn btn-dark">Додати</button>
@@ -70,9 +66,37 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="deleteHotelModal" tabindex="-1" aria-labelledby="deleteHotelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteHotelModalLabel">Підтвердження видалення</h5>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-title">Ви дійсно хочете видалити цей готель?</h5>
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/hotel-management/delete-hotel}" method="post">
+                    <input type="hidden" name="hotelId" id="hotelIdToDelete"/>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                    <button type="submit" class="btn btn-danger">Видалити</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var deleteHotelModal = document.getElementById('deleteHotelModal');
+    deleteHotelModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var hotelId = button.getAttribute('data-id');
+        var hotelIdInput = deleteHotelModal.querySelector('#hotelIdToDelete');
+        hotelIdInput.value = hotelId;
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous">
-</script>
+        crossorigin="anonymous"></script>
 </body>
 </html>
