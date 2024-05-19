@@ -2,6 +2,8 @@ package org.hotel.models;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "rooms_table")
 public class RoomModel {
@@ -12,9 +14,27 @@ public class RoomModel {
     @JoinColumn(name = "hotels_id")
     private HotelModel hotel;
     private Integer roomNumber;
+    private String name;
     private String type;
+    private String description;
     private Double pricePerNight;
     private Boolean isAvailable;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;
@@ -64,4 +84,30 @@ public class RoomModel {
         isAvailable = available;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RoomModel roomModel = (RoomModel) o;
+        return Objects.equals(id, roomModel.id) && Objects.equals(hotel, roomModel.hotel) && Objects.equals(roomNumber, roomModel.roomNumber) && Objects.equals(name, roomModel.name) && Objects.equals(type, roomModel.type) && Objects.equals(description, roomModel.description) && Objects.equals(pricePerNight, roomModel.pricePerNight) && Objects.equals(isAvailable, roomModel.isAvailable);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, hotel, roomNumber, name, type, description, pricePerNight, isAvailable);
+    }
+
+    @Override
+    public String toString() {
+        return "RoomModel{" +
+                "id=" + id +
+                ", hotel=" + hotel +
+                ", roomNumber=" + roomNumber +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
+                ", pricePerNight=" + pricePerNight +
+                ", isAvailable=" + isAvailable +
+                '}';
+    }
 }

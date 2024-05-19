@@ -4,8 +4,18 @@
             <a class="navbar-brand" href="/">
                 <img src="/images/title.png" width="80" height="40" alt="logo">
             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+                    aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse justify-content-md-end" id="navbarNavDarkDropdown">
-                <ul class="navbar-nav  justify-content-end flex-grow-1 pe-3">
+                <ul class="navbar-nav justify-content-end">
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" href="/login">Авторизація</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" href="/register">Реєстрація</a>
+                    </li>
                     <li class="nav-item dropdown btn-group dropstart" sec:authorize="isAuthenticated()">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenu" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false" sec:authentication="name">
@@ -15,12 +25,6 @@
                             <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
                                    data-bs-target="#logOutSubmit">Вийти</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item" sec:authorize="!isAuthenticated()">
-                        <a class="nav-link" href="/login">Авторизація</a>
-                    </li>
-                    <li class="nav-item" sec:authorize="!isAuthenticated()">
-                        <a class="nav-link" href="/register">Реєстрація</a>
                     </li>
                 </ul>
             </div>

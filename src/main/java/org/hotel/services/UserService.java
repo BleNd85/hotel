@@ -22,18 +22,20 @@ public class UserService {
     }
 
     @Transactional
-    public UserModel registerUser(String login, String password, String email) {
-        if (login == null || password == null) {
+    public UserModel registerUser(String username, String password, String email, String name, String surname) {
+        if (username == null || password == null) {
             return null;
         } else {
-            if (userRepository.findFirstByUsername(login).isPresent()) {
+            if (userRepository.findFirstByUsername(username).isPresent()) {
                 return null;
             }
             if (userRepository.findFirstByEmail(email).isPresent()) {
                 return null;
             }
             UserModel userModel = new UserModel();
-            userModel.setUsername(login);
+            userModel.setUsername(username);
+            userModel.setName(name);
+            userModel.setSurname(surname);
             userModel.setPassword(bCryptPasswordEncoder.encode(password));
             userModel.setEmail(email);
             userModel.setRole(RoleModel.USER);

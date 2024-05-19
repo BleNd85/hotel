@@ -1,15 +1,18 @@
-package org.booking.services;
+package org.hotel.services;
 
 import jakarta.transaction.Transactional;
-import org.booking.models.BookingModel;
-import org.booking.repositories.BookingRepository;
+import org.hotel.models.BookingModel;
+import org.hotel.models.RoomModel;
+import org.hotel.models.UserModel;
+import org.hotel.repositories.BookingRepository;
 import org.springframework.stereotype.Service;
 
 import javax.naming.NameNotFoundException;
+import java.time.LocalDate;
 
 
 @Service
-public class Service {
+public class BookingService {
     private final BookingRepository bookingRepository;
 
     public BookingService(BookingRepository bookingRepository) {
@@ -17,7 +20,7 @@ public class Service {
     }
 
     @Transactional
-    public BookingModel addBooking(int id, String User,int room, float StartDate, float EndDate) {
+    public BookingModel addBooking(Integer id, LocalDate startDate, LocalDate endDate, RoomModel room, UserModel user) {
         if (id == null) {
             return null;
         } else {
@@ -26,17 +29,19 @@ public class Service {
             }
         }
         BookingModel bookingModel = new BookingModel();
-        bookingModel.id(id);
+        bookingModel.setId(id);
+        bookingModel.setStartDate(startDate);
+        bookingModel.setEndDate(endDate);
         bookingModel.setUser(user);
-        bookingModel.setDate(date);
-        bookingModel.setDate(room);
-        bookingModel.setStart(startdate);
-        bookingModel.setEnd(enddate);
+        bookingModel.setRoom(room);
         return bookingRepository.save(bookingModel);
     }
 
-    public BookingModel findFirstById(int id) throws NameNotFoundException {
+    public BookingModel findFirstById(Integer id) throws NameNotFoundException {
         return bookingRepository.findFirstById(id).orElse(null);
+    }
+    public BookingModel findByRoom(RoomModel roomModel){
+        return bookingRepository.findFirstByRoom(roomModel);
     }
 
     public void deleteBooking(Integer bookingId) {
