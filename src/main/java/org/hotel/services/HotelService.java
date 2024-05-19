@@ -2,10 +2,12 @@ package org.hotel.services;
 
 import jakarta.transaction.Transactional;
 import org.hotel.models.HotelModel;
+import org.hotel.models.UserModel;
 import org.hotel.repositories.HotelRepository;
 import org.springframework.stereotype.Service;
 
 import javax.naming.NameNotFoundException;
+import java.util.List;
 
 
 @Service
@@ -38,5 +40,9 @@ public class HotelService {
 
     public void deleteHotel(Integer hotelId) {
         hotelRepository.deleteById(hotelId);
+    }
+
+
+    public List<HotelModel> getAll() {return hotelRepository.findAll();
     }
 }
