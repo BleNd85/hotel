@@ -33,4 +33,5 @@ public class HotelController {
         HotelModel registeredHotel = hotelService.addHotel(hotelModel.getName(), hotelModel.getDescription(), hotelModel.getLocation());
         return registeredHotel == null ? "error_page" : "redirect:/hotel-management";
     }
+
 }

@@ -28,7 +28,10 @@
             <td th:text="${user.surname}"></td>
             <td th:text="${user.email}"></td>
             <td>
-                <button class="btn btn-danger" th:action="@{/user-management/delete-user}">Видалити</button>
+                <form th:action="@{/user-management/delete-user}" method="post">
+                    <input type="hidden" name="userId" th:value="${user.id}"/>
+                    <button type="submit" class="btn btn-danger">Видалити</button>
+                </form>
             </td>
         </tr>
         </tbody>

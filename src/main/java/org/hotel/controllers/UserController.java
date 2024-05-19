@@ -4,9 +4,7 @@ import org.hotel.models.UserModel;
 import org.hotel.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -57,10 +55,8 @@ public class UserController {
         return "redirect:/home_page";
     }
     @PostMapping("/user-management/delete-user")
-    public String deleteUser(@ModelAttribute UserModel userModel){
-        userService.deleteUser(userModel.getId());
+    public String deleteUser(@RequestParam Integer userId){
+        userService.deleteUser(userId);
         return "redirect:/user-management";
     }
-
-
 }
