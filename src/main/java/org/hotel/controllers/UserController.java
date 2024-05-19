@@ -46,10 +46,4 @@ public class UserController {
         return "redirect:/home_page";
     }
 
-    @GetMapping("/customerManagement")
-    public String getCustomerManagement(Model model) {
-        List<UserModel> users = userService.getAllUsers(); // Получаем список всех пользователей
-        model.addAttribute("users", users); // Добавляем список пользователей в модель
-        return "customer_management"; // Возвращаем имя шаблона
-    }
 }

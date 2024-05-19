@@ -3,10 +3,11 @@ import jakarta.transaction.Transactional;
 import org.hotel.models.HotelModel;
 import org.hotel.models.RoomModel;
 import org.hotel.repositories.RoomRepository;
+import org.springframework.stereotype.Service;
 
 import javax.naming.NameNotFoundException;
 import java.util.Optional;
-
+@Service
 public class RoomService {
     private final RoomRepository roomRepository;
 

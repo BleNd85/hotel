@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -41,21 +42,7 @@ public class UserService {
             return userRepository.save(userModel);
         }
     }
-
-    public UserModel findByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findFirstByUsername(username).orElse(null);
-    }
-
-    public void deleteUser(Integer userId) {
-        userRepository.deleteById(userId);
-    }
-
-    public List<UserModel> getAllUsers() {
-        return userRepository.findAll();
-    }
-}
-
-//delete on release
+    //delete on release
 //    @PostConstruct
 //    public void postConstruct() {
 //        UserModel userAdmin = new UserModel();
@@ -65,3 +52,15 @@ public class UserService {
 //        userRepository.save(userAdmin);
 //    }
 
+
+    public UserModel findByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findFirstByUsername(username).orElse(null);
+    }
+
+    public void deleteUser(Integer userId) {
+        userRepository.deleteById(userId);
+    }
+    public List<UserModel> getAll(){
+        return userRepository.findAll();
+    }
+}
