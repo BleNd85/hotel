@@ -6,6 +6,7 @@ import org.hotel.repositories.RoomRepository;
 import org.springframework.stereotype.Service;
 
 import javax.naming.NameNotFoundException;
+import java.util.List;
 import java.util.Optional;
 @Service
 public class RoomService {
@@ -44,5 +45,8 @@ public class RoomService {
 
     public void deleteRoom(Integer roomId) {
         roomRepository.deleteById(roomId);
+    }
+
+    public List<RoomModel> getAll() {return roomRepository.findAll();
     }
 }
