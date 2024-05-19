@@ -7,7 +7,8 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<div class="container mt-5">
+<div th:replace="~{blocks/navbar}"></div>
+<div class="container mt-5 overflow-auto">
     <h2 class="mb-4">Room List</h2>
     <table class="table table-bordered">
         <thead>
@@ -32,9 +33,16 @@
             <td th:text="${room.description}"></td>
             <td th:text="${room.pricepernight}"></td>
             <td th:text="${room.isavailable}"></td>
+            <td>
+                <button class="btn btn-danger">Видалити</button>
+            </td>
         </tr>
         </tbody>
     </table>
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#registerSubmit">Додати
+        готель
+    </button>
 </div>
+
 </body>
 </html>

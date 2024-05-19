@@ -30,14 +30,6 @@ public class AdminController {
         return "admin_panel";
     }
 
-
-
-    @PostMapping("/user-management/registerByAdmin")
-    public String registerUserFromAdminPanel(@ModelAttribute UserModel userModel) {
-        UserModel registeredUser = userService.registerUser(userModel.getUsername(), userModel.getPassword(), userModel.getEmail(), userModel.getName(), userModel.getSurname());
-        return registeredUser == null ? "error_page" : "redirect:/adminPanel";
-    }
-
 //    @GetMapping("/deleteUserByAdmin")
 //    public String deleteUserByAdmin(@ModelAttribute UserModel userModel) {
 //        userService.deleteUser(userModel.getId());

@@ -35,6 +35,11 @@ public class UserController {
         model.addAttribute("users", users);
         return "user_management";
     }
+    @PostMapping("/user-management/registerByAdmin")
+    public String registerUserFromAdminPanel(@ModelAttribute UserModel userModel) {
+        UserModel registeredUser = userService.registerUser(userModel.getUsername(), userModel.getPassword(), userModel.getEmail(), userModel.getName(), userModel.getSurname());
+        return registeredUser == null ? "error_page" : "redirect:/user-management";
+    }
     @PostMapping("/register")
     public String register(@ModelAttribute UserModel userModel) {
         System.out.println("register request" + userModel);
@@ -51,5 +56,11 @@ public class UserController {
     public String logout() {
         return "redirect:/home_page";
     }
+    @PostMapping("/user-management/delete-user")
+    public String deleteUser(@ModelAttribute UserModel userModel){
+        userService.deleteUser(userModel.getId());
+        return "redirect:/user-management";
+    }
+
 
 }

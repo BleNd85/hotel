@@ -8,7 +8,7 @@
 </head>
 <body>
 <div th:replace="~{blocks/navbar}"></div>
-<div class="container mt-5 overflow-scroll">
+<div class="container mt-5 overflow-auto">
     <h2 class="mb-4">User List</h2>
     <table class="table table table-striped table-bordered table-hover">
         <thead>
@@ -28,7 +28,7 @@
             <td th:text="${user.surname}"></td>
             <td th:text="${user.email}"></td>
             <td>
-                <button class="btn btn-danger">Видалити</button>
+                <button class="btn btn-danger" th:action="@{/user-management/delete-user}">Видалити</button>
             </td>
         </tr>
         </tbody>
@@ -78,7 +78,7 @@
                                class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="password">Password</label>
                     </div>
-                    <button type="submit" class="btn btn-dark" value="logout">Додати</button>
+                    <button type="submit" class="btn btn-dark">Додати</button>
                 </form>
             </div>
         </div>

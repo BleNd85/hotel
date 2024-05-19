@@ -7,6 +7,7 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
+<div th:replace="~{blocks/navbar}"></div>
 <div class="container mt-5">
     <h2 class="mb-4">Hotel List</h2>
     <table class="table table-bordered">
@@ -16,7 +17,7 @@
             <th>Name</th>
             <th>Description</th>
             <th>location</th>
-            <th>CreationDate</th>
+            <th>Creation Date</th>
         </tr>
         </thead>
         <tbody>
@@ -26,9 +27,47 @@
             <td th:text="${hotel.description}"></td>
             <td th:text="${hotel.location}"></td>
             <td th:text="${hotel.created_at}"></td>
+            <td><button class="btn btn-danger">Видалити</button></td>
         </tr>
         </tbody>
     </table>
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addHotel">Додати
+        готель
+    </button>
 </div>
+<div class="modal fade" id="addHotel" tabindex="-1" aria-labelledby="addHotel" aria-hidden="true"
+     role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addHotelLabel">Додати готель</h5>
+            </div>
+            <div class="modal-footer justify-content-start">
+                <form th:action="@{/hotel-management/add-hotel}" method="post">
+                    <div class="form-outline">
+                        <input type="text" name="name" id="name"
+                               class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="name">Name</label>
+                    </div>
+                    <div class="form-outline">
+                        <input type="text" name="description" id="description"
+                               class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="description">Description</label>
+                    </div>
+                    <div class="form-outline">
+                        <input type="text" name="location" id="location"
+                               class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="location">Location</label>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Додати</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous">
+</script>
 </body>
 </html>
