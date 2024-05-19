@@ -58,3 +58,6 @@ input:-webkit-autofill:focus {
 input[data-autocompleted] {
     background-color: transparent !important;
 }
+.padding-bottom{
+    padding-bottom: 10%;
+}
