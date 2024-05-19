@@ -17,10 +17,12 @@
         <div class="card-body py-5 px-md-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
-                    <a class="navbar-brand" href="/">
-                        <img src="/images/title.png" width="80" height="40" alt="logo">
-                    </a>
-                    <h2 class="fw-bold mb-5">Sign in to KoDoBooking</h2>
+                    <div class="row">
+                        <a class="navbar-brand p-3" href="/">
+                            <img src="/images/title.png" width="80" height="40" alt="logo">
+                        </a>
+                        <h2 class="fw-bold mb-5">Sign in to KoDoBooking</h2>
+                    </div>
                     <form th:action="@{/login}" method="post">
                         <div class="row">
                             <!-- Username input -->
