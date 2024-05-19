@@ -29,6 +29,12 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/user-management")
+    public String getCustomerManagement(Model model) {
+        List<UserModel> users = userService.getAll();
+        model.addAttribute("users", users);
+        return "user_management";
+    }
     @PostMapping("/register")
     public String register(@ModelAttribute UserModel userModel) {
         System.out.println("register request" + userModel);

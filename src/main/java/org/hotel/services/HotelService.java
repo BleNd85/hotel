@@ -43,6 +43,8 @@ public class HotelService {
     }
 
 
-    public List<HotelModel> getAll() {return hotelRepository.findAll();
+    public List<HotelModel> getAll(){
+        return hotelRepository.findAll();
     }
+
 }

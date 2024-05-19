@@ -19,37 +19,18 @@ import java.util.List;
 @Controller
 public class AdminController {
     private final UserService userService;
-    private final HotelService hotelService;
-    private final RoomService roomService;
 
     public AdminController(UserService userService, HotelService hotelService, RoomService roomService) {
         this.userService = userService;
-        this.hotelService = hotelService;
-        this.roomService = roomService;
+
     }
 
     @GetMapping("/adminPanel")
     public String getAdminPanelPage() {
         return "admin_panel";
     }
-    @GetMapping("/user-management")
-    public String getCustomerManagement(Model model) {
-        List<UserModel> users = userService.getAll();
-        model.addAttribute("users", users);
-        return "user_management";
-    }
-    @GetMapping("/hotel-management")
-    public <hotelModel> String getHotelManagement(Model model) {
-        List<HotelModel> hotels = hotelService.getAll();
-        model.addAttribute("hotels", hotels);
-        return "hotel_management";
-    }
-    @GetMapping("/room-management")
-    public <roomModel> String getRoomManagement(Model model) {
-        List<RoomModel> rooms = roomService.getAll();
-        model.addAttribute("rooms", rooms);
-        return "room_management";
-    }
+
+
 
     @PostMapping("/user-management/registerByAdmin")
     public String registerUserFromAdminPanel(@ModelAttribute UserModel userModel) {
