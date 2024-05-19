@@ -51,7 +51,7 @@ public class AdminController {
         return "room_management";
     }
 
-    @PostMapping("/registerByAdmin")
+    @PostMapping("/user-management/registerByAdmin")
     public String registerUserFromAdminPanel(@ModelAttribute UserModel userModel) {
         UserModel registeredUser = userService.registerUser(userModel.getUsername(), userModel.getPassword(), userModel.getEmail(), userModel.getName(), userModel.getSurname());
         return registeredUser == null ? "error_page" : "redirect:/adminPanel";
