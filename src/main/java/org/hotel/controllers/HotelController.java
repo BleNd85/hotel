@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -34,4 +35,9 @@ public class HotelController {
         return registeredHotel == null ? "error_page" : "redirect:/hotel-management";
     }
 
+    @PostMapping("/hotel-management/delete-hotel")
+    public String deleteUser(@RequestParam Integer hotelId) {
+        hotelService.deleteHotel(hotelId);
+        return "redirect:/hotel-management";
+    }
 }

@@ -27,7 +27,12 @@
             <td th:text="${hotel.description}"></td>
             <td th:text="${hotel.location}"></td>
             <td th:text="${hotel.created_at}"></td>
-            <td><button class="btn btn-danger">Видалити</button></td>
+            <td>
+                <form th:action="@{/hotel-management/delete-hotel}" method="post">
+                    <input type="hidden" name="hotelId" th:value="${hotel.id}"/>
+                    <button type="submit" class="btn btn-danger">Видалити</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
