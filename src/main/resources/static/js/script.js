@@ -70,16 +70,3 @@ deleteHotelModal.addEventListener('show.bs.modal', function (event) {
     modalSurnameInput.value = surname;
     modalEmailInput.value = email;
 });
-
-    var deleteUserModal = document.getElementById('deleteUserModal');
-    deleteUserModal.addEventListener('show.bs.modal', function (event) {
-    var button = event.relatedTarget;
-    var userId = button.getAttribute('data-id');
-    var username = button.getAttribute('data-username');
-
-    var modalIdInput = deleteUserModal.querySelector('#userIdToDelete');
-    var modalUsername = deleteUserModal.querySelector('#userUsernameToDelete');
-
-    modalIdInput.value = userId;
-    modalUsername.textContent = username;
-});
