@@ -22,6 +22,7 @@
             <th>Name</th>
             <th>Surname</th>
             <th>Email</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -32,83 +33,108 @@
             <td th:text="${user.surname}"></td>
             <td th:text="${user.email}"></td>
             <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserModal"
+                        th:attr="data-id=${user.id}, data-username=${user.username}, data-name=${user.name}, data-surname=${user.surname}, data-email=${user.email}">Edit</button>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal"
-                        th:attr="data-id=${user.id}">Видалити
-                </button>
+                        th:attr="data-id=${user.id}, data-username=${user.username}">Delete</button>
             </td>
         </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#registerSubmit">Додати
-        користувача
-    </button>
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#registerSubmit">Add User</button>
 </div>
-<div class="modal fade" id="registerSubmit" tabindex="-1" aria-labelledby="registerSubmitLabel" aria-hidden="true"
-     role="dialog">
-    <div class="modal-dialog" role="document">
+
+<!-- Add User Modal -->
+<div class="modal fade" id="registerSubmit" tabindex="-1" aria-labelledby="registerSubmitLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="registerSubmitLabel">Зареєструвати користувача</h5>
+                <h5 class="modal-title" id="registerSubmitLabel">Register User</h5>
             </div>
-            <div class="modal-footer justify-content-start">
+            <div class="modal-body">
                 <form th:action="@{/user-management/registerByAdmin}" method="post">
-                    <div class="form-outline">
-                        <input type="text" name="username" id="username" required
-                               class="form-control bg-transparent text-dark"/>
-                        <label class="form-label" for="firstName">Username</label>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                            <input type="text" name="name" id="firstName" required
-                                   class="form-control bg-transparent text-dark"/>
-                            <label class="form-label" for="firstName">First name</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                            <input type="text" name="surname" id="lastName" required
-                                   class="form-control bg-transparent text-dark"/>
-                            <label class="form-label" for="lastName">Last name</label>
-                        </div>
-                    </div>
-
-                    <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" name="email" id="emailAddress" required
-                               class="form-control bg-transparent text-dark"/>
+                        <input type="text" name="username" id="username" required class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="username">Username</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="text" name="name" id="firstName" required class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="firstName">First name</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="text" name="surname" id="lastName" required class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="lastName">Last name</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="email" name="email" id="emailAddress" required class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="emailAddress">Email address</label>
                     </div>
-
                     <div class="form-outline mb-4">
-                        <input type="password" name="password" id="password" required
-                               class="form-control bg-transparent text-dark"/>
+                        <input type="password" name="password" id="password" required class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="password">Password</label>
                     </div>
-                    <button type="submit" class="btn btn-dark">Додати</button>
+                    <button type="submit" class="btn btn-dark">Add</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteUserModalLabel">Підтвердження видалення</h5>
+                <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
             </div>
             <div class="modal-body">
-                Ви дійсно хочете видалити користувача <strong id="userUsernameToDelete"></strong>?
+                <form th:action="@{/user-management/edit}" method="post">
+                    <input type="hidden" name="id" id="editUserId"/>
+                    <div class="form-outline mb-4">
+                        <input type="text" name="username" id="editUsername" required class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="editUsername">Username</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="text" name="name" id="editFirstName" required class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="editFirstName">First name</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="text" name="surname" id="editLastName" required class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="editLastName">Last name</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="email" name="email" id="editEmailAddress" required class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="editEmailAddress">Email address</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Delete User Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteUserModalLabel">Confirm Deletion</h5>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete user <strong id="userUsernameToDelete"></strong>?
             </div>
             <div class="modal-footer">
                 <form th:action="@{/user-management/delete-user}" method="post">
                     <input type="hidden" name="userId" id="userIdToDelete"/>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
-                    <button type="submit" class="btn btn-danger">Видалити</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <script src="/js/script.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

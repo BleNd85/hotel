@@ -48,3 +48,38 @@ deleteHotelModal.addEventListener('show.bs.modal', function (event) {
     var hotelIdInput = deleteHotelModal.querySelector('#hotelIdToDelete');
     hotelIdInput.value = hotelId;
 });
+
+    var editUserModal = document.getElementById('editUserModal');
+    editUserModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget;
+    var userId = button.getAttribute('data-id');
+    var username = button.getAttribute('data-username');
+    var name = button.getAttribute('data-name');
+    var surname = button.getAttribute('data-surname');
+    var email = button.getAttribute('data-email');
+
+    var modalIdInput = editUserModal.querySelector('#editUserId');
+    var modalUsernameInput = editUserModal.querySelector('#editUsername');
+    var modalNameInput = editUserModal.querySelector('#editFirstName');
+    var modalSurnameInput = editUserModal.querySelector('#editLastName');
+    var modalEmailInput = editUserModal.querySelector('#editEmailAddress');
+
+    modalIdInput.value = userId;
+    modalUsernameInput.value = username;
+    modalNameInput.value = name;
+    modalSurnameInput.value = surname;
+    modalEmailInput.value = email;
+});
+
+    var deleteUserModal = document.getElementById('deleteUserModal');
+    deleteUserModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget;
+    var userId = button.getAttribute('data-id');
+    var username = button.getAttribute('data-username');
+
+    var modalIdInput = deleteUserModal.querySelector('#userIdToDelete');
+    var modalUsername = deleteUserModal.querySelector('#userUsernameToDelete');
+
+    modalIdInput.value = userId;
+    modalUsername.textContent = username;
+});

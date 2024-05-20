@@ -8,15 +8,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
+
 
 @Controller
 public class UserController {
+
     private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @PostMapping("/user-management/edit")
+    public String editUser(@RequestParam Integer id, @RequestParam String username,
+                           @RequestParam String name, @RequestParam String surname,
+                           @RequestParam String email, Model model) {
+        UserModel updatedUser = userService.updateUser(id, username, email, name, surname);
+        if (updatedUser == null) {
+            model.addAttribute("error", "An error occurred while updating the user.");
+            return "error";
+        }
+        return "redirect:/user-management";
     }
 
     @GetMapping("/register")
@@ -62,5 +75,6 @@ public class UserController {
         userService.deleteUser(userId);
         return "redirect:/user-management";
     }
+
 
 }

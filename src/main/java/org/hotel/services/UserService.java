@@ -63,4 +63,23 @@ public class UserService {
     public List<UserModel> getAll(){
         return userRepository.findAll();
     }
+    @Transactional
+    public UserModel updateUser(Integer id, String username, String email, String name, String surname) {
+        UserModel userModel = userRepository.findById(id).orElse(null);
+        if (userModel == null) {
+            return null;
+        }
+        if (userRepository.findFirstByUsername(username).isPresent() && !userModel.getUsername().equals(username)) {
+            return null;
+        }
+        if (userRepository.findFirstByEmail(email).isPresent() && !userModel.getEmail().equals(email)) {
+            return null;
+        }
+        userModel.setUsername(username);
+        userModel.setEmail(email);
+        userModel.setName(name);
+        userModel.setSurname(surname);
+        return userRepository.save(userModel);
+    }
+
 }
