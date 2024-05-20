@@ -49,20 +49,20 @@
             <div class="modal-footer justify-content-start">
                 <form th:action="@{/user-management/registerByAdmin}" method="post">
                     <div class="form-outline">
-                        <input type="text" name="username" id="username"
+                        <input type="text" name="username" id="username" required
                                class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="firstName">Username</label>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="form-outline">
-                            <input type="text" name="name" id="firstName"
+                            <input type="text" name="name" id="firstName" required
                                    class="form-control bg-transparent text-dark"/>
                             <label class="form-label" for="firstName">First name</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="form-outline">
-                            <input type="text" name="surname" id="lastName"
+                            <input type="text" name="surname" id="lastName" required
                                    class="form-control bg-transparent text-dark"/>
                             <label class="form-label" for="lastName">Last name</label>
                         </div>
@@ -70,13 +70,13 @@
 
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" name="email" id="emailAddress"
+                        <input type="email" name="email" id="emailAddress" required
                                class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="emailAddress">Email address</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="password" name="password" id="password"
+                        <input type="password" name="password" id="password" required
                                class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="password">Password</label>
                     </div>

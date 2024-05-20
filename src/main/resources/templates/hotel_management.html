@@ -48,16 +48,18 @@
             <div class="modal-body">
                 <form th:action="@{/hotel-management/add-hotel}" method="post">
                     <div class="form-outline mb-3">
-                        <input type="text" name="name" id="name" class="form-control bg-transparent text-dark"/>
+                        <input type="text" name="name" id="name" required
+                               class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="name">Name</label>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="text" name="description" id="description"
+                        <input type="text" name="description" id="description" required
                                class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="description">Description</label>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="text" name="location" id="location" class="form-control bg-transparent text-dark"/>
+                        <input type="text" name="location" id="location" required
+                               class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="location">Location</label>
                     </div>
                     <button type="submit" class="btn btn-dark">Додати</button>
