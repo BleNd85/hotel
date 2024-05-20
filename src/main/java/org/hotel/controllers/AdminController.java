@@ -25,7 +25,7 @@ public class AdminController {
 
     }
 
-    @GetMapping("/adminPanel")
+    @GetMapping("/admin-panel")
     public String getAdminPanelPage() {
         return "admin_panel";
     }

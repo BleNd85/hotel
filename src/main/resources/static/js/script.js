@@ -41,16 +41,8 @@ document.querySelector("#sortBySurname").addEventListener("click", () => {
     sortTable(tableElement, 3, !currentIsAscending);
 });
 
-var deleteHotelModal = document.getElementById('deleteHotelModal');
-deleteHotelModal.addEventListener('show.bs.modal', function (event) {
-    var button = event.relatedTarget;
-    var hotelId = button.getAttribute('data-id');
-    var hotelIdInput = deleteHotelModal.querySelector('#hotelIdToDelete');
-    hotelIdInput.value = hotelId;
-});
-
-    var editUserModal = document.getElementById('editUserModal');
-    editUserModal.addEventListener('show.bs.modal', function (event) {
+var editUserModal = document.getElementById('editUserModal');
+editUserModal.addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget;
     var userId = button.getAttribute('data-id');
     var username = button.getAttribute('data-username');
@@ -70,3 +62,13 @@ deleteHotelModal.addEventListener('show.bs.modal', function (event) {
     modalSurnameInput.value = surname;
     modalEmailInput.value = email;
 });
+
+var deleteHotelModal = document.getElementById('deleteHotelModal');
+deleteHotelModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget;
+    var hotelId = button.getAttribute('data-id');
+    var hotelIdInput = deleteHotelModal.querySelector('#hotelIdToDelete');
+    hotelIdInput.value = hotelId;
+});
+
+

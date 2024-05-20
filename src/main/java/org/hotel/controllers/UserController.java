@@ -27,7 +27,7 @@ public class UserController {
         UserModel updatedUser = userService.updateUser(id, username, email, name, surname);
         if (updatedUser == null) {
             model.addAttribute("error", "An error occurred while updating the user.");
-            return "error";
+            return "errorl";
         }
         return "redirect:/user-management";
     }
