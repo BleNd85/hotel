@@ -18,6 +18,7 @@
             <th>Description</th>
             <th>Location</th>
             <th>Creation Date</th>
+            <th>Amount of beds</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -28,6 +29,7 @@
             <td th:text="${hotel.description}"></td>
             <td th:text="${hotel.location}"></td>
             <td th:text="${hotel.created_at}"></td>
+            <td th:text="${hotel.amountOfPlaces}"></td>
             <td>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteHotelModal"
                         th:attr="data-id=${hotel.id}">Видалити
@@ -36,7 +38,7 @@
         </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addHotel">Додати готель</button>
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addHotel">Додати готель</button>
 </div>
 
 <div class="modal fade" id="addHotel" tabindex="-1" aria-labelledby="addHotel" aria-hidden="true" role="dialog">

@@ -19,33 +19,10 @@ public class HotelModel {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date created_at;
+    private Integer amountOfPlaces;
 
     public Integer getId() {
         return id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HotelModel that = (HotelModel) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(location, that.location) && Objects.equals(created_at, that.created_at);
-    }
-
-    @Override
-    public String toString() {
-        return "HotelModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", location='" + location + '\'' +
-                ", created_at=" + created_at +
-                '}';
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, location, created_at);
     }
 
     public void setId(Integer id) {
@@ -76,14 +53,49 @@ public class HotelModel {
         this.location = location;
     }
 
+    public Integer getAmountOfPlaces() {
+        return amountOfPlaces;
+    }
+
+    public void setAmountOfPlaces(Integer amountOfPlaces) {
+        this.amountOfPlaces = amountOfPlaces;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HotelModel that = (HotelModel) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(location, that.location) && Objects.equals(created_at, that.created_at) && Objects.equals(amountOfPlaces, that.amountOfPlaces);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, location, created_at, amountOfPlaces);
+    }
+
+    @Override
+    public String toString() {
+        return "HotelModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", location='" + location + '\'' +
+                ", created_at=" + created_at +
+                ", amountOfPlaces=" + amountOfPlaces +
+                '}';
+    }
+
     public Date getCreated_at() {
         return created_at;
     }
+
     @PrePersist
-    public void onCreate(){
+    public void onCreate() {
         created_at = new Date();
     }
-    public void setCreated_at(Date date){
+
+    public void setCreated_at(Date date) {
         this.created_at = date;
     }
 

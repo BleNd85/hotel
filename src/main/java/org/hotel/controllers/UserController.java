@@ -60,7 +60,6 @@ public class UserController {
         UserModel registeredUser = userService.registerUser(userModel.getUsername(), userModel.getPassword(), userModel.getEmail(), userModel.getName(), userModel.getSurname());
         return registeredUser == null ? "error_page" : "redirect:/login";
     }
-
     @GetMapping("/personal_page")
     public String getPersonalPage() {
         return "personal_page";
@@ -75,6 +74,4 @@ public class UserController {
         userService.deleteUser(userId);
         return "redirect:/user-management";
     }
-
-
 }

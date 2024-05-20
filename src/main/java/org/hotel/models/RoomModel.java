@@ -19,6 +19,7 @@ public class RoomModel {
     private String description;
     private Double pricePerNight;
     private Boolean isAvailable;
+    private Integer amountOfPlaces;
 
     public String getName() {
         return name;
@@ -84,17 +85,25 @@ public class RoomModel {
         isAvailable = available;
     }
 
+    public Integer getAmountOfPlaces() {
+        return amountOfPlaces;
+    }
+
+    public void setAmountOfPlaces(Integer amountOfPlaces) {
+        this.amountOfPlaces = amountOfPlaces;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RoomModel roomModel = (RoomModel) o;
-        return Objects.equals(id, roomModel.id) && Objects.equals(hotel, roomModel.hotel) && Objects.equals(roomNumber, roomModel.roomNumber) && Objects.equals(name, roomModel.name) && Objects.equals(type, roomModel.type) && Objects.equals(description, roomModel.description) && Objects.equals(pricePerNight, roomModel.pricePerNight) && Objects.equals(isAvailable, roomModel.isAvailable);
+        return Objects.equals(id, roomModel.id) && Objects.equals(hotel, roomModel.hotel) && Objects.equals(roomNumber, roomModel.roomNumber) && Objects.equals(name, roomModel.name) && Objects.equals(type, roomModel.type) && Objects.equals(description, roomModel.description) && Objects.equals(pricePerNight, roomModel.pricePerNight) && Objects.equals(isAvailable, roomModel.isAvailable) && Objects.equals(amountOfPlaces, roomModel.amountOfPlaces);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, hotel, roomNumber, name, type, description, pricePerNight, isAvailable);
+        return Objects.hash(id, hotel, roomNumber, name, type, description, pricePerNight, isAvailable, amountOfPlaces);
     }
 
     @Override
@@ -108,6 +117,7 @@ public class RoomModel {
                 ", description='" + description + '\'' +
                 ", pricePerNight=" + pricePerNight +
                 ", isAvailable=" + isAvailable +
+                ", amountOfPlaces=" + amountOfPlaces +
                 '}';
     }
 }

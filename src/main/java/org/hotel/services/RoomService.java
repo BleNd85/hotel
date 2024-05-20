@@ -1,4 +1,5 @@
 package org.hotel.services;
+
 import jakarta.transaction.Transactional;
 import org.hotel.models.HotelModel;
 import org.hotel.models.RoomModel;
@@ -8,12 +9,15 @@ import org.springframework.stereotype.Service;
 import javax.naming.NameNotFoundException;
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class RoomService {
     private final RoomRepository roomRepository;
+    private final HotelService hotelService;
 
-    public RoomService(RoomRepository roomRepository) {
+    public RoomService(RoomRepository roomRepository, HotelService hotelService) {
         this.roomRepository = roomRepository;
+        this.hotelService = hotelService;
     }
 
     @Transactional
@@ -26,27 +30,40 @@ public class RoomService {
             }
         }
         RoomModel roomModel = new RoomModel();
-        roomModel.setId(id);
         roomModel.setName(name);
         roomModel.setPricePerNight(pricePerNight);
         roomModel.setRoomNumber(roomNumber);
         roomModel.setType(type);
         roomModel.setDescription(description);
         roomModel.setHotel(hotel);
+        hotelService.getAmountOfPlaces(hotel.getId());
         return roomRepository.save(roomModel);
     }
 
     public RoomModel findById(Integer id) throws NameNotFoundException {
         return roomRepository.findById(id).orElse(null);
     }
-    public Optional<RoomModel> findByHotel(HotelModel hotelModel){
+
+    public Optional<RoomModel> findByHotel(HotelModel hotelModel) {
         return roomRepository.findByHotel(hotelModel);
     }
 
+    public List<RoomModel> findAllByHotel(HotelModel hotelModel) {
+        return roomRepository.findAllByHotelId(hotelModel.getId());
+    }
+
     public void deleteRoom(Integer roomId) {
+        RoomModel roomModel = roomRepository.findById(roomId).orElse(null);
+        if (roomModel != null) {
+            HotelModel hotel = roomModel.getHotel();
+            hotelService.getAmountOfPlaces(hotel.getId());
+        }
         roomRepository.deleteById(roomId);
     }
 
-    public List<RoomModel> getAll() {return roomRepository.findAll();
+
+    public List<RoomModel> getAll() {
+        System.out.println(roomRepository.findAll());
+        return roomRepository.findAll();
     }
 }

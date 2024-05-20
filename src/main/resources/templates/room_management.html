@@ -20,28 +20,57 @@
             <th>Type</th>
             <th>description</th>
             <th>pricePerNight</th>
-            <th>isAvailable</th>
+            <th>Places</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="room : ${room}">
+        <tr th:each="room:${rooms}">
             <td th:text="${room.id}"></td>
-            <td th:text="${room.hotel}"></td>
-            <td th:text="${room.roomnumber}"></td>
+            <td th:text="${room.hotel.name}"></td>
+            <td th:text="${room.roomNumber}"></td>
             <td th:text="${room.name}"></td>
             <td th:text="${room.type}"></td>
             <td th:text="${room.description}"></td>
-            <td th:text="${room.pricepernight}"></td>
-            <td th:text="${room.isavailable}"></td>
+            <td th:text="${room.pricePerNight}"></td>
+            <td th:text="${room.amountOfPlaces}"></td>
             <td>
                 <button class="btn btn-danger">Видалити</button>
             </td>
         </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#registerSubmit">Додати
-        готель
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addNumber">Додати
+        номер
     </button>
+</div>
+<div class="modal fade" id="addNumber" tabindex="-1" aria-labelledby="addNumber" aria-hidden="true" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNumberLabel">Додати готель</h5>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/room-management/add-number}" method="post">
+                    <div class="form-outline mb-3">
+                        <input type="text" name="name" id="name" required
+                               class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="name">Name</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="text" name="description" id="description" required
+                               class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="description">Description</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="text" name="location" id="location" required
+                               class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="location">Location</label>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Додати</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
