@@ -41,7 +41,6 @@ public class UserModel {
     public RoleModel getRole() {
         return role;
     }
-
     public Integer getId() {
         return id;
     }
@@ -49,6 +48,7 @@ public class UserModel {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public String getUsername() {
         return username;
@@ -82,6 +82,7 @@ public class UserModel {
         return Objects.equals(id, userModel.id) && Objects.equals(username, userModel.username) && Objects.equals(password, userModel.password) && Objects.equals(email, userModel.email) && Objects.equals(role, userModel.role);
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(id, username, password, email, role);
@@ -99,4 +100,5 @@ public class UserModel {
                 ", surname='" + surname + '\'' +
                 '}';
     }
+
 }

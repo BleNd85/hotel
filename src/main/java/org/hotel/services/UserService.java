@@ -56,10 +56,10 @@ public class UserService {
     public UserModel findByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findFirstByUsername(username).orElse(null);
     }
-
     public void deleteUser(Integer userId) {
         userRepository.deleteById(userId);
     }
+
     public List<UserModel> getAll(){
         return userRepository.findAll();
     }
