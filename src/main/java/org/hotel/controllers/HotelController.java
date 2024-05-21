@@ -7,11 +7,9 @@ import org.hotel.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.naming.NameNotFoundException;
 import java.util.List;
 
 @Controller
@@ -47,5 +45,18 @@ public class HotelController {
         }
         hotelService.deleteHotel(hotelId);
         return "redirect:/hotel-management";
+    }
+
+    @GetMapping("/hotel/{id}")
+    public String viewHotelDetails(@PathVariable("id") Integer id, Model model) {
+        HotelModel hotel = hotelService.findById(id);
+        model.addAttribute("hotel", hotel);
+        return "view_hotel_details";
+    }
+    @GetMapping("/view-hotels")
+    public String viewHotels(Model model) {
+        List<HotelModel> hotels = hotelService.getAll();
+        model.addAttribute("hotels", hotels);
+        return "view_hotels";
     }
 }
