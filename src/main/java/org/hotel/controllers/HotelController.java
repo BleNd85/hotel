@@ -1,7 +1,9 @@
 package org.hotel.controllers;
 
 import org.hotel.models.HotelModel;
+import org.hotel.models.RoomModel;
 import org.hotel.services.HotelService;
+import org.hotel.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,12 @@ import java.util.List;
 public class HotelController {
 
     private final HotelService hotelService;
+    private final RoomService roomService;
 
     @Autowired
-    public HotelController(HotelService hotelService) {
+    public HotelController(HotelService hotelService, RoomService roomService) {
         this.hotelService = hotelService;
+        this.roomService = roomService;
     }
 
     @GetMapping("/hotel-management")
@@ -36,7 +40,11 @@ public class HotelController {
     }
 
     @PostMapping("/hotel-management/delete-hotel")
-    public String deleteUser(@RequestParam Integer hotelId) {
+    public String deleteHotel(@RequestParam Integer hotelId) {
+        List<RoomModel> rooms = roomService.findAllByHotel(hotelService.findById(hotelId));
+        for (RoomModel roomModel : rooms) {
+            roomService.deleteRoom(roomModel.getId());
+        }
         hotelService.deleteHotel(hotelId);
         return "redirect:/hotel-management";
     }

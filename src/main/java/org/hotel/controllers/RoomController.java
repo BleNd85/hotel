@@ -40,8 +40,8 @@ public class RoomController {
     public String addRoom(@ModelAttribute RoomModel roomModel, @RequestParam Integer hotelId) {
         HotelModel hotelModel = hotelService.findById(hotelId);
         roomModel.setHotel(hotelModel);
-        RoomModel registeredRoom = roomService.addRoom(roomModel.getHotel(), roomModel.getName(),
-                roomModel.getPricePerNight(), roomModel.getRoomNumber(), roomModel.getType(), roomModel.getDescription());
+        RoomModel registeredRoom = roomService.addRoom(roomModel.getHotel(), roomModel.getName(), roomModel.getPricePerNight(),
+                roomModel.getRoomNumber(), roomModel.getType(), roomModel.getDescription(), roomModel.getAmountOfPlaces());
         return registeredRoom == null ? "error_page" : "redirect:/room-management";
     }
 }

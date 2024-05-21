@@ -21,7 +21,7 @@ public class RoomService {
     }
 
     @Transactional
-    public RoomModel addRoom(HotelModel hotel, String name, Double pricePerNight, Integer roomNumber, String type, String description) {
+    public RoomModel addRoom(HotelModel hotel, String name, Double pricePerNight, Integer roomNumber, String type, String description, Integer amountOfPlaces) {
         RoomModel roomModel = new RoomModel();
         roomModel.setName(name);
         roomModel.setPricePerNight(pricePerNight);
@@ -29,6 +29,7 @@ public class RoomService {
         roomModel.setType(type);
         roomModel.setDescription(description);
         roomModel.setHotel(hotel);
+        roomModel.setAmountOfPlaces(amountOfPlaces);
         hotelService.getAmountOfPlaces(hotel.getId());
         return roomRepository.save(roomModel);
     }

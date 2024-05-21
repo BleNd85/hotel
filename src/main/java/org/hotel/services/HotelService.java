@@ -59,6 +59,7 @@ public class HotelService {
     public void getAmountOfPlaces(Integer hotelId) {
         HotelModel hotel = hotelRepository.findById(hotelId).orElse(null);
         List<RoomModel> roomModels = roomRepository.findAllByHotelId(hotelId);
+        System.out.println(roomModels);
         int totalPlaces = 0;
         for (RoomModel roomModel : roomModels) {
             totalPlaces += roomModel.getAmountOfPlaces();
