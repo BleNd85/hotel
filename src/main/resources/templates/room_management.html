@@ -14,25 +14,25 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Hotel</th>
-            <th>RoomNumber</th>
             <th>Name</th>
+            <th>RoomNumber</th>
             <th>Type</th>
-            <th>description</th>
-            <th>pricePerNight</th>
+            <th>Description</th>
+            <th>price per night</th>
             <th>Places</th>
+            <th>Hotel</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="room:${rooms}">
             <td th:text="${room.id}"></td>
-            <td th:text="${room.hotel.name}"></td>
-            <td th:text="${room.roomNumber}"></td>
             <td th:text="${room.name}"></td>
+            <td th:text="${room.roomNumber}"></td>
             <td th:text="${room.type}"></td>
             <td th:text="${room.description}"></td>
             <td th:text="${room.pricePerNight}"></td>
             <td th:text="${room.amountOfPlaces}"></td>
+            <td th:text="${room.hotel.name}"></td>
             <td>
                 <button class="btn btn-danger">Видалити</button>
             </td>
@@ -50,11 +50,21 @@
                 <h5 class="modal-title" id="addNumberLabel">Додати готель</h5>
             </div>
             <div class="modal-body">
-                <form th:action="@{/room-management/add-number}" method="post">
+                <form th:action="@{/room-management/add-room}" method="post">
                     <div class="form-outline mb-3">
                         <input type="text" name="name" id="name" required
                                class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="name">Name</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="number" name="roomNumber" id="roomNumber" required
+                               class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="roomNumber">Room Number</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="text" name="type" id="type" required
+                               class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="type">Room Type</label>
                     </div>
                     <div class="form-outline mb-3">
                         <input type="text" name="description" id="description" required
@@ -62,9 +72,22 @@
                         <label class="form-label" for="description">Description</label>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="text" name="location" id="location" required
+                        <input type="number" name="pricePerNight" id="pricePerNight" required
                                class="form-control bg-transparent text-dark"/>
-                        <label class="form-label" for="location">Location</label>
+                        <label class="form-label" for="pricePerNight">Price per night</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="number" name="amountOfPlaces" id="amountOfPlaces" required
+                               class="form-control bg-transparent text-dark"/>
+                        <label class="form-label" for="amountOfPlaces">Amount of places</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <select name="hotel" id="hotel" required class="form-control bg-transparent text-dark">
+                            <option th:each="hotel : ${hotels}" th:value="${hotel.id}" th:text="${hotel.name}">Select
+                                Hotel
+                            </option>
+                        </select>
+                        <label class="form-label" for="hotel">Hotel</label>
                     </div>
                     <button type="submit" class="btn btn-dark">Додати</button>
                 </form>

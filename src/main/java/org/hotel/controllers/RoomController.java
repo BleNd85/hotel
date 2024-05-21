@@ -1,6 +1,8 @@
 package org.hotel.controllers;
 
+import org.hotel.models.HotelModel;
 import org.hotel.models.RoomModel;
+import org.hotel.services.HotelService;
 import org.hotel.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,16 +17,21 @@ import java.util.List;
 public class RoomController {
 
     private final RoomService roomService;
+    private final HotelService hotelService;
+
 
     @Autowired
-    public RoomController(RoomService roomService) {
+    public RoomController(RoomService roomService, HotelService hotelService) {
         this.roomService = roomService;
+        this.hotelService = hotelService;
     }
 
     @GetMapping("/room-management")
     public String getRoomManagement(Model model) {
         List<RoomModel> rooms = roomService.getAll();
+        List<HotelModel> hotels = hotelService.getAll();
         model.addAttribute("rooms", rooms);
+        model.addAttribute("hotels", hotels);
         return "room_management";
     }
 
