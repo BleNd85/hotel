@@ -34,7 +34,7 @@ public class RoomService {
         return roomRepository.save(roomModel);
     }
 
-    public RoomModel findById(Integer id) throws NameNotFoundException {
+    public RoomModel findById(Integer id) {
         return roomRepository.findById(id).orElse(null);
     }
 

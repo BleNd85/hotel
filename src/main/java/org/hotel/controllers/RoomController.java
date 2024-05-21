@@ -7,10 +7,7 @@ import org.hotel.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,5 +40,25 @@ public class RoomController {
         RoomModel registeredRoom = roomService.addRoom(roomModel.getHotel(), roomModel.getName(), roomModel.getPricePerNight(),
                 roomModel.getRoomNumber(), roomModel.getType(), roomModel.getDescription(), roomModel.getAmountOfPlaces());
         return registeredRoom == null ? "error_page" : "redirect:/room-management";
+    }
+
+    // Mapping for user to view all rooms
+    @GetMapping("/view-rooms")
+    public String viewRooms(Model model) {
+        List<RoomModel> rooms = roomService.getAll();
+        model.addAttribute("rooms", rooms);
+        return "view_rooms";
+    }
+
+    // Mapping for user to view room details
+    @GetMapping("/room/{id}")
+    public String viewRoomDetails(@PathVariable("id") Integer id, Model model) {
+        RoomModel room = roomService.findById(id);
+        if (room != null) {
+            model.addAttribute("room", room);
+            return "view_room_details";
+        } else {
+            return "error_page"; // Handle the case where the room is not found
+        }
     }
 }
