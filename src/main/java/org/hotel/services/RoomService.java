@@ -21,14 +21,7 @@ public class RoomService {
     }
 
     @Transactional
-    public RoomModel addRoom(Integer id, HotelModel hotel, String name, Double pricePerNight, Integer roomNumber, String type, String description) {
-        if (id == null) {
-            return null;
-        } else {
-            if (roomRepository.findById(id).isPresent()) {
-                return null;
-            }
-        }
+    public RoomModel addRoom(HotelModel hotel, String name, Double pricePerNight, Integer roomNumber, String type, String description) {
         RoomModel roomModel = new RoomModel();
         roomModel.setName(name);
         roomModel.setPricePerNight(pricePerNight);

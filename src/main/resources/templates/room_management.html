@@ -82,12 +82,12 @@
                         <label class="form-label" for="amountOfPlaces">Amount of places</label>
                     </div>
                     <div class="form-outline mb-3">
-                        <select name="hotel" id="hotel" required class="form-control bg-transparent text-dark">
+                        <select name="hotelId" id="hotelId" required class="form-control bg-transparent text-dark">
                             <option th:each="hotel : ${hotels}" th:value="${hotel.id}" th:text="${hotel.name}">Select
                                 Hotel
                             </option>
                         </select>
-                        <label class="form-label" for="hotel">Hotel</label>
+                        <label class="form-label" for="hotelId">Hotel</label>
                     </div>
                     <button type="submit" class="btn btn-dark">Додати</button>
                 </form>

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -36,8 +37,10 @@ public class RoomController {
     }
 
     @PostMapping("/room-management/add-room")
-    public String addRoom(@ModelAttribute RoomModel roomModel) {
-        RoomModel registeredRoom = roomService.addRoom(roomModel.getId(), roomModel.getHotel(), roomModel.getName(),
+    public String addRoom(@ModelAttribute RoomModel roomModel, @RequestParam Integer hotelId) {
+        HotelModel hotelModel = hotelService.findById(hotelId);
+        roomModel.setHotel(hotelModel);
+        RoomModel registeredRoom = roomService.addRoom(roomModel.getHotel(), roomModel.getName(),
                 roomModel.getPricePerNight(), roomModel.getRoomNumber(), roomModel.getType(), roomModel.getDescription());
         return registeredRoom == null ? "error_page" : "redirect:/room-management";
     }

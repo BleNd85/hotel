@@ -1,5 +1,6 @@
 package org.hotel.services;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.transaction.Transactional;
 import org.hotel.models.HotelModel;
 import org.hotel.models.RoomModel;
@@ -49,6 +50,10 @@ public class HotelService {
 
     public List<HotelModel> getAll() {
         return hotelRepository.findAll();
+    }
+
+    public HotelModel findById(Integer id) {
+        return hotelRepository.findFirstById(id).orElse(null);
     }
 
     public void getAmountOfPlaces(Integer hotelId) {
