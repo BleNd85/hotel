@@ -56,7 +56,6 @@ public class UserController {
     }
     @PostMapping("/register")
     public String register(@ModelAttribute UserModel userModel) {
-        System.out.println("register request" + userModel);
         UserModel registeredUser = userService.registerUser(userModel.getUsername(), userModel.getPassword(), userModel.getEmail(), userModel.getName(), userModel.getSurname());
         return registeredUser == null ? "error_page" : "redirect:/login";
     }

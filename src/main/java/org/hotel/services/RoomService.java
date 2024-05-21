@@ -57,7 +57,6 @@ public class RoomService {
 
 
     public List<RoomModel> getAll() {
-        System.out.println(roomRepository.findAll());
         return roomRepository.findAll();
     }
 }
