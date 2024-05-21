@@ -10,13 +10,29 @@
 </head>
 <body>
 <div th:replace="~{blocks/navbar}"></div>
-<div>
-<p class="mb-0"><a href="/user-management" class="text-black-50 fw-bold" sec:authorize='hasRole("ADMIN")'>
-    User Management System</a>
-<p class="mb-1"><a href="/hotel-management" class="text-black-50 fw-bold" sec:authorize='hasRole("ADMIN")'>
-    Hotel Management System</a>
-<p class="mb-1"><a href="/room-management" class="text-black-50 fw-bold" sec:authorize='hasRole("ADMIN")'>
-    Room Management System</a> </div>
+<div class="container row-cols-auto" sec:authorize='hasRole("ADMIN")'>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Система керування користувачами</h5>
+            <p class="card-text">Тут ви можете керувати користувачами.</p>
+            <a href="/user-management" class="btn btn-primary">Перейти</a>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Система керування готелями</h5>
+            <p class="card-text">Тут ви можете керувати готелями.</p>
+            <a href="/hotel-management" class="btn btn-primary">Перейти</a>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Система керування номерами</h5>
+                <p class="card-text">Тут ви можете керувати номерами.</p>
+                <a href="/room-management" class="btn btn-primary">Перейти</a>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous">
