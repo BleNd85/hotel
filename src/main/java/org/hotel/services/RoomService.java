@@ -30,7 +30,7 @@ public class RoomService {
         roomModel.setDescription(description);
         roomModel.setHotel(hotel);
         roomModel.setAmountOfPlaces(amountOfPlaces);
-        hotelService.getAmountOfPlaces(hotel.getId());
+        hotel.setAmountOfPlaces(amountOfPlaces);
         return roomRepository.save(roomModel);
     }
 
@@ -50,7 +50,7 @@ public class RoomService {
         RoomModel roomModel = roomRepository.findById(roomId).orElse(null);
         if (roomModel != null) {
             HotelModel hotel = roomModel.getHotel();
-            hotelService.getAmountOfPlaces(hotel.getId());
+            hotel.setAmountOfPlaces(-roomModel.getAmountOfPlaces());
         }
         roomRepository.deleteById(roomId);
     }

@@ -19,7 +19,7 @@ public class HotelModel {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date created_at;
-    private Integer amountOfPlaces;
+    private Integer amountOfPlaces = 0;
 
     public Integer getId() {
         return id;
@@ -58,7 +58,7 @@ public class HotelModel {
     }
 
     public void setAmountOfPlaces(Integer amountOfPlaces) {
-        this.amountOfPlaces = amountOfPlaces;
+        this.amountOfPlaces += amountOfPlaces;
     }
 
     @Override

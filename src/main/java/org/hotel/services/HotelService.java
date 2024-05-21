@@ -16,11 +16,9 @@ import java.util.List;
 @Service
 public class HotelService {
     private final HotelRepository hotelRepository;
-    private final RoomRepository roomRepository;
 
-    public HotelService(HotelRepository hotelRepository, RoomRepository roomRepository) {
+    public HotelService(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
-        this.roomRepository = roomRepository;
     }
 
     @Transactional
@@ -54,18 +52,5 @@ public class HotelService {
 
     public HotelModel findById(Integer id) {
         return hotelRepository.findFirstById(id).orElse(null);
-    }
-
-    public void getAmountOfPlaces(Integer hotelId) {
-        HotelModel hotel = hotelRepository.findById(hotelId).orElse(null);
-        List<RoomModel> roomModels = roomRepository.findAllByHotelId(hotelId);
-        System.out.println(roomModels);
-        int totalPlaces = 0;
-        for (RoomModel roomModel : roomModels) {
-            totalPlaces += roomModel.getAmountOfPlaces();
-        }
-        assert hotel != null;
-        hotel.setAmountOfPlaces(totalPlaces);
-        hotelRepository.save(hotel);
     }
 }
