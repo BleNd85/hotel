@@ -61,4 +61,10 @@ public class RoomController {
             return "error_page"; // Handle the case where the room is not found
         }
     }
+
+    @PostMapping("/room-management/delete-room")
+    public String deleteRoom(@RequestParam Integer roomId) {
+        roomService.deleteRoom(roomId);
+        return "redirect:/room-management";
+    }
 }
