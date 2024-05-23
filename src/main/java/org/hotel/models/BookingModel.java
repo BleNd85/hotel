@@ -1,6 +1,7 @@
 package org.hotel.models;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -19,8 +20,11 @@ public class BookingModel {
     @ManyToOne
     @JoinColumn(name = "rooms_id")
     private RoomModel room;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
+    private BookingStatus bookingStatus;
 
     public Integer getId() {
         return id;
@@ -46,20 +50,40 @@ public class BookingModel {
         this.room = room;
     }
 
-    public LocalDate getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public BookingStatus getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(BookingStatus bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "BookingModel{" +
+                "id=" + id +
+                ", user=" + user +
+                ", room=" + room +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", bookingStatus=" + bookingStatus +
+                '}';
     }
 
     @Override
@@ -75,14 +99,4 @@ public class BookingModel {
         return Objects.hash(id, user, room, startDate, endDate);
     }
 
-    @Override
-    public String toString() {
-        return "BookingModel{" +
-                "id=" + id +
-                ", user=" + user +
-                ", room=" + room +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                '}';
-    }
 }

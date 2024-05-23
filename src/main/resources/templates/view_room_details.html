@@ -46,14 +46,14 @@
                 <h5 class="modal-title" id="bookingSubmitLabel">Подати заявку на бронювання</h5>
             </div>
             <div class="modal-body">
-                <form th:action="@{/room/add-booking/}" method="post">
+                <form th:action="@{/room/{id}/add-booking(id=${room.id})}" method="post">
                     <div class="form-outline mb-4">
-                        <input type="date" name="Start date" id="startDate" required
+                        <input type="date" name="startDate" id="startDate" required
                                class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="startDate">Start date</label>
                     </div>
                     <div class="form-outline mb-4">
-                        <input type="date" name="End date" id="endDate" required
+                        <input type="date" name="endDate" id="endDate" required
                                class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="endDate">End date</label>
                     </div>

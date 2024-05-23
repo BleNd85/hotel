@@ -2,6 +2,7 @@ package org.hotel.services;
 
 import jakarta.transaction.Transactional;
 import org.hotel.models.BookingModel;
+import org.hotel.models.BookingStatus;
 import org.hotel.models.RoomModel;
 import org.hotel.models.UserModel;
 import org.hotel.repositories.BookingRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.naming.NameNotFoundException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 
@@ -21,12 +23,13 @@ public class BookingService {
     }
 
     @Transactional
-    public BookingModel addBooking(LocalDate startDate, LocalDate endDate, RoomModel room, UserModel user) {
+    public BookingModel addBooking(Date startDate, Date endDate, RoomModel room, UserModel user, BookingStatus bookingStatus) {
         BookingModel bookingModel = new BookingModel();
         bookingModel.setStartDate(startDate);
         bookingModel.setEndDate(endDate);
         bookingModel.setUser(user);
         bookingModel.setRoom(room);
+        bookingModel.setBookingStatus(bookingStatus);
         return bookingRepository.save(bookingModel);
     }
 

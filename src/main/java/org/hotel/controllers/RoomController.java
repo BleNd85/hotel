@@ -1,8 +1,10 @@
 package org.hotel.controllers;
 
+import org.hotel.models.BookingModel;
 import org.hotel.models.HotelModel;
 import org.hotel.models.RoomModel;
 import org.hotel.models.UserModel;
+import org.hotel.services.BookingService;
 import org.hotel.services.HotelService;
 import org.hotel.services.RoomService;
 import org.hotel.services.UserService;
@@ -21,13 +23,15 @@ public class RoomController {
     private final RoomService roomService;
     private final HotelService hotelService;
     private final UserService userService;
+    private final BookingService bookingService;
 
 
     @Autowired
-    public RoomController(RoomService roomService, HotelService hotelService, UserService userService) {
+    public RoomController(RoomService roomService, HotelService hotelService, UserService userService, BookingService bookingService) {
         this.roomService = roomService;
         this.hotelService = hotelService;
         this.userService = userService;
+        this.bookingService = bookingService;
     }
 
     @GetMapping("/room-management")
@@ -55,6 +59,7 @@ public class RoomController {
         model.addAttribute("rooms", rooms);
         return "view_rooms";
     }
+
 
     // Mapping for user to view room details
     @GetMapping("/room/{id}")
