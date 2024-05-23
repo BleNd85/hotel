@@ -47,7 +47,7 @@ public class BookingController {
         bookingModel.setRoom(roomModel);
         bookingModel.setUser(userModel);
         bookingModel.setBookingStatus(BookingStatus.PENDING);
-        BookingModel registeredBooking = bookingService.addBooking(bookingModel.getStartDate(), bookingModel.getEndDate(), bookingModel.getRoom(), bookingModel.getUser(), bookingModel.getBookingStatus());
+        BookingModel registeredBooking = bookingService.addBooking(bookingModel.getStartDate(), bookingModel.getEndDate(), bookingModel.getRoom(), bookingModel.getUser(), bookingModel.getBookingStatus(), bookingModel.getComment());
         if (registeredBooking == null) {
             return "error_page";
         } else {

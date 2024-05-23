@@ -18,16 +18,20 @@
             <th>Room</th>
             <th>Start date</th>
             <th>End date</th>
-            <th>User</th>
+            <th>User's name</th>
+            <th>User's second name</th>
+            <th>Comment</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="booking:${bookings}">
             <td th:text="${booking.id}"></td>
-            <td th:text="${booking.room}"></td>
-            <td th:text="${booking.startDate}"></td>
-            <td th:text="${booking.endDate}"></td>
-            <td th:text="${booking.user}"></td>
+            <td th:text="${booking.room.name}"></td>
+            <td th:text="${#dates.format(booking.startDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${#dates.format(booking.endDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${booking.user.name}"></td>
+            <td th:text="${booking.user.surname}"></td>
+            <td th:text="${booking.comment}"></td>
         </tr>
         </tbody>
     </table>

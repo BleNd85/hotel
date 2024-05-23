@@ -23,13 +23,14 @@ public class BookingService {
     }
 
     @Transactional
-    public BookingModel addBooking(Date startDate, Date endDate, RoomModel room, UserModel user, BookingStatus bookingStatus) {
+    public BookingModel addBooking(Date startDate, Date endDate, RoomModel room, UserModel user, BookingStatus bookingStatus, String comment) {
         BookingModel bookingModel = new BookingModel();
         bookingModel.setStartDate(startDate);
         bookingModel.setEndDate(endDate);
         bookingModel.setUser(user);
         bookingModel.setRoom(room);
         bookingModel.setBookingStatus(bookingStatus);
+        bookingModel.setComment(comment);
         return bookingRepository.save(bookingModel);
     }
 

@@ -25,6 +25,7 @@ public class BookingModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     private BookingStatus bookingStatus;
+    private String comment;
 
     public Integer getId() {
         return id;
@@ -74,6 +75,14 @@ public class BookingModel {
         this.bookingStatus = bookingStatus;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
         return "BookingModel{" +
@@ -83,6 +92,7 @@ public class BookingModel {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", bookingStatus=" + bookingStatus +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 
