@@ -2,13 +2,17 @@ package org.hotel.controllers;
 
 import org.hotel.models.HotelModel;
 import org.hotel.models.RoomModel;
+import org.hotel.models.UserModel;
 import org.hotel.services.HotelService;
 import org.hotel.services.RoomService;
+import org.hotel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -16,12 +20,14 @@ public class RoomController {
 
     private final RoomService roomService;
     private final HotelService hotelService;
+    private final UserService userService;
 
 
     @Autowired
-    public RoomController(RoomService roomService, HotelService hotelService) {
+    public RoomController(RoomService roomService, HotelService hotelService, UserService userService) {
         this.roomService = roomService;
         this.hotelService = hotelService;
+        this.userService = userService;
     }
 
     @GetMapping("/room-management")
@@ -52,10 +58,12 @@ public class RoomController {
 
     // Mapping for user to view room details
     @GetMapping("/room/{id}")
-    public String viewRoomDetails(@PathVariable("id") Integer id, Model model) {
+    public String viewRoomDetails(@PathVariable("id") Integer id, Model model, Principal principal) {
         RoomModel room = roomService.findById(id);
+        UserModel user = userService.findByUsername(principal.getName());
         if (room != null) {
             model.addAttribute("room", room);
+            model.addAttribute("user", user);
             return "view_room_details";
         } else {
             return "error_page"; // Handle the case where the room is not found

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -36,14 +37,14 @@ public class BookingController {
         return "booking-management";
     }
 
-    @PostMapping("/booking-management/add-booking")
+    @PostMapping("/room/add-booking")
     public String addBooking(@ModelAttribute BookingModel bookingModel, @RequestParam Integer roomId, @RequestParam Integer userId) {
         RoomModel roomModel = roomService.findById(roomId);
         UserModel userModel = userService.findById(userId);
         bookingModel.setRoom(roomModel);
         bookingModel.setUser(userModel);
         BookingModel registeredBooking = bookingService.addBooking(bookingModel.getStartDate(), bookingModel.getEndDate(), bookingModel.getRoom(), bookingModel.getUser());
-        return registeredBooking == null ? "error_page" : "booking-management";
+        return registeredBooking == null ? "error_page" : "view_room_details";
     }
 
     @PostMapping("/booking-management/delete-booking")
