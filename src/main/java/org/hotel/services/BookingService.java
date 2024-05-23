@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.naming.NameNotFoundException;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Service
@@ -20,16 +21,8 @@ public class BookingService {
     }
 
     @Transactional
-    public BookingModel addBooking(Integer id, LocalDate startDate, LocalDate endDate, RoomModel room, UserModel user) {
-        if (id == null) {
-            return null;
-        } else {
-            if (bookingRepository.findFirstById(id).isPresent()) {
-                return null;
-            }
-        }
+    public BookingModel addBooking(LocalDate startDate, LocalDate endDate, RoomModel room, UserModel user) {
         BookingModel bookingModel = new BookingModel();
-        bookingModel.setId(id);
         bookingModel.setStartDate(startDate);
         bookingModel.setEndDate(endDate);
         bookingModel.setUser(user);
@@ -40,11 +33,16 @@ public class BookingService {
     public BookingModel findFirstById(Integer id) throws NameNotFoundException {
         return bookingRepository.findFirstById(id).orElse(null);
     }
-    public BookingModel findByRoom(RoomModel roomModel){
-        return bookingRepository.findFirstByRoom(roomModel);
+
+    public List<BookingModel> findByUser(UserModel userModel) {
+        return bookingRepository.findByUser(userModel);
     }
 
     public void deleteBooking(Integer bookingId) {
         bookingRepository.deleteById(bookingId);
+    }
+
+    public List<BookingModel> getAll() {
+        return bookingRepository.findAll();
     }
 }

@@ -56,13 +56,15 @@ public class UserService {
     public UserModel findByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findFirstByUsername(username).orElse(null);
     }
+
     public void deleteUser(Integer userId) {
         userRepository.deleteById(userId);
     }
 
-    public List<UserModel> getAll(){
+    public List<UserModel> getAll() {
         return userRepository.findAll();
     }
+
     @Transactional
     public UserModel updateUser(Integer id, String username, String email, String name, String surname) {
         UserModel userModel = userRepository.findById(id).orElse(null);
@@ -80,6 +82,10 @@ public class UserService {
         userModel.setName(name);
         userModel.setSurname(surname);
         return userRepository.save(userModel);
+    }
+
+    public UserModel findById(Integer id) {
+        return userRepository.findFirstById(id).orElse(null);
     }
 
 }
