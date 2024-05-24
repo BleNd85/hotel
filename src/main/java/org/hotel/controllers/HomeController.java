@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.util.List;
 
 @RequestMapping("/")
@@ -18,16 +19,14 @@ public class HomeController {
     }
 
     @GetMapping
-    public String getHomePage(Model model){
+    public String getHomePage(Model model) {
         List<HotelModel> hotelModelList = hotelService.getAll();
         int amountOfPlaces = 0;
         for (HotelModel hotelModel : hotelModelList) {
             amountOfPlaces += hotelModel.getAmountOfPlaces();
         }
         model.addAttribute("amountOfPlace", amountOfPlaces);
+        model.addAttribute("hotelCount", hotelService.countHotels());
         return "home_page";
-
-
     }
-
 }

@@ -20,6 +20,7 @@ public class HotelModel {
     @Column(nullable = false)
     private Date created_at;
     private Integer amountOfPlaces = 0;
+    private Integer amountOfHotels = 0;
 
     public Integer getId() {
         return id;
@@ -61,6 +62,11 @@ public class HotelModel {
         this.amountOfPlaces += amountOfPlaces;
     }
 
+    public Integer getAmountOfHotels() {return amountOfHotels;}
+    public void setAmountOfHotels(Integer amountOfHotels) {
+        this.amountOfHotels += amountOfHotels;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,7 +77,7 @@ public class HotelModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, location, created_at, amountOfPlaces);
+        return Objects.hash(id, name, description, location, created_at, amountOfPlaces,amountOfHotels);
     }
 
     @Override
@@ -83,6 +89,7 @@ public class HotelModel {
                 ", location='" + location + '\'' +
                 ", created_at=" + created_at +
                 ", amountOfPlaces=" + amountOfPlaces +
+                ", amountOfPlaces=" + amountOfHotels +
                 '}';
     }
 

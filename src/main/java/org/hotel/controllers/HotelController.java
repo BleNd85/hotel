@@ -1,20 +1,15 @@
+// HotelController.java
 package org.hotel.controllers;
 
-import org.hotel.models.BookingModel;
 import org.hotel.models.HotelModel;
 import org.hotel.models.RoomModel;
-import org.hotel.models.UserModel;
-import org.hotel.services.BookingService;
 import org.hotel.services.HotelService;
 import org.hotel.services.RoomService;
-import org.hotel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -22,13 +17,11 @@ public class HotelController {
 
     private final HotelService hotelService;
     private final RoomService roomService;
-    private final UserService userService;
 
     @Autowired
-    public HotelController(HotelService hotelService, RoomService roomService, UserService userService) {
+    public HotelController(HotelService hotelService, RoomService roomService) {
         this.hotelService = hotelService;
         this.roomService = roomService;
-        this.userService = userService;
     }
 
     @GetMapping("/hotel-management")
@@ -69,5 +62,10 @@ public class HotelController {
         model.addAttribute("hotels", hotels);
         return "view_hotels";
     }
-}
 
+    @GetMapping("/hotel-management/hotel-count")
+    @ResponseBody
+    public long getHotelCount() {
+        return hotelService.countHotels();
+    }
+}
