@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.naming.NameNotFoundException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -23,13 +24,13 @@ public class BookingService {
     }
 
     @Transactional
-    public BookingModel addBooking(Date startDate, Date endDate, RoomModel room, UserModel user, BookingStatus bookingStatus, String comment) {
+    public BookingModel addBooking(Date startDate, Date endDate, RoomModel room, UserModel user, String comment) {
         BookingModel bookingModel = new BookingModel();
         bookingModel.setStartDate(startDate);
         bookingModel.setEndDate(endDate);
         bookingModel.setUser(user);
         bookingModel.setRoom(room);
-        bookingModel.setBookingStatus(bookingStatus);
+        bookingModel.setBookingStatus(BookingStatus.PENDING);
         bookingModel.setComment(comment);
         return bookingRepository.save(bookingModel);
     }
@@ -48,5 +49,17 @@ public class BookingService {
 
     public List<BookingModel> getAll() {
         return bookingRepository.findAll();
+    }
+
+    public List<BookingModel> findByStatus(BookingStatus bookingStatus) {
+        return bookingRepository.findByBookingStatus(bookingStatus);
+    }
+
+    public List<BookingStatus> getAllStatuses() {
+        return Arrays.asList(BookingStatus.values());
+    }
+
+    public void save(BookingModel bookingModel) {
+        bookingRepository.save(bookingModel);
     }
 }

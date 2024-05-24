@@ -10,16 +10,29 @@
 <div th:replace="~{blocks/navbar}"></div>
 <div class="container mt-5">
     <h2 class="mb-4">Available Rooms</h2>
-    <div class="list-group">
-        <a th:each="room : ${rooms}" th:href="@{/room/{id}(id=${room.id})}" class="list-group-item list-group-item-action">
-            <h6 class="mb-1" th:text="${room.hotel.name}">Hotel Name</h6>
-            <h5 class="mb-1" th:text="${room.name}">Room Name</h5>
-            <p class="mb-1" th:text="${room.hotel.location}">Location</p>
-            <p class="mb-1" th:text="${room.description}">Room Description</p>
-            <small th:text="'Room Number: ' + ${room.roomNumber}">Room Number</small>
-            <br>
-            <small th:text="'Price per Night: $' + ${room.pricePerNight}">Price per Night</small>
-        </a>
+    <div class="row g-4">
+        <div class="col-12" th:each="room : ${rooms}">
+            <div class="card mb-3 h-100">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${room.hotel.name}">Hotel Name</h6>
+                            <h5 class="card-title" th:text="${room.name}">Room Name</h5>
+                            <p class="card-text" th:text="${room.hotel.location}">Location</p>
+                            <p class="card-text" th:text="${room.description}">Room Description</p>
+                            <p class="card-text">
+                                <small th:text="'Room Number: ' + ${room.roomNumber}">Room Number</small><br>
+                                <small th:text="'Price per Night: $' + ${room.pricePerNight}">Price per Night</small>
+                            </p>
+                            <a th:href="@{/room/{id}(id=${room.id})}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <img src="" class="img-fluid rounded-start" style="padding: 1rem" alt="Room Image">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

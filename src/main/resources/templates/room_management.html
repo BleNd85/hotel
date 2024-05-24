@@ -49,7 +49,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addNumberLabel">Додати готель</h5>
+                <h5 class="modal-title" id="addNumberLabel">Додати номер</h5>
             </div>
             <div class="modal-body">
                 <form th:action="@{/room-management/add-room}" method="post">
@@ -69,8 +69,8 @@
                         <label class="form-label" for="type">Room Type</label>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="text" name="description" id="description" required
-                               class="form-control bg-transparent text-dark"/>
+                        <textarea type="text" name="description" id="description" required
+                               class="form-control bg-transparent text-dark" rows="3"></textarea>
                         <label class="form-label" for="description">Description</label>
                     </div>
                     <div class="form-outline mb-3">

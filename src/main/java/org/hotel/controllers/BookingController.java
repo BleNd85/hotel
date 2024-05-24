@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.NameNotFoundException;
 import java.util.List;
 
 @Controller
@@ -29,8 +30,14 @@ public class BookingController {
 
     @GetMapping("/booking-management")
     public String getBookingManagement(Model model) {
-        List<BookingModel> bookings = bookingService.getAll();
-        model.addAttribute("bookings", bookings);
+        List<BookingModel> pendingBookings = bookingService.findByStatus(BookingStatus.PENDING);
+        List<BookingModel> acceptedBookings = bookingService.findByStatus(BookingStatus.ACCEPTED);
+        List<BookingModel> canceledBookings = bookingService.findByStatus(BookingStatus.CANCELED);
+        List<BookingStatus> bookingStatuses = bookingService.getAllStatuses();
+        model.addAttribute("bookingStatus", bookingStatuses);
+        model.addAttribute("pendingBookings", pendingBookings);
+        model.addAttribute("acceptedBookings", acceptedBookings);
+        model.addAttribute("canceledBookings", canceledBookings);
         return "booking-management";
     }
 
@@ -47,12 +54,20 @@ public class BookingController {
         bookingModel.setRoom(roomModel);
         bookingModel.setUser(userModel);
         bookingModel.setBookingStatus(BookingStatus.PENDING);
-        BookingModel registeredBooking = bookingService.addBooking(bookingModel.getStartDate(), bookingModel.getEndDate(), bookingModel.getRoom(), bookingModel.getUser(), bookingModel.getBookingStatus(), bookingModel.getComment());
+        BookingModel registeredBooking = bookingService.addBooking(bookingModel.getStartDate(), bookingModel.getEndDate(), bookingModel.getRoom(), bookingModel.getUser(), bookingModel.getComment());
         if (registeredBooking == null) {
             return "error_page";
         } else {
             return "redirect:/room/" + roomId;
         }
     }
+    @PostMapping("/booking-management/change-booking-status")
+    public String changeBookingStatus(@RequestParam Integer bookingId, @RequestParam BookingStatus bookingStatus) throws NameNotFoundException {
+        BookingModel bookingModel = bookingService.findFirstById(bookingId);
+        bookingModel.setBookingStatus(bookingStatus);
+        bookingService.save(bookingModel);
+        return "redirect:/booking-management";
+    }
+
 }
 

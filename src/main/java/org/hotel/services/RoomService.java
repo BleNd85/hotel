@@ -12,11 +12,9 @@ import java.util.Optional;
 @Service
 public class RoomService {
     private final RoomRepository roomRepository;
-    private final HotelService hotelService;
 
-    public RoomService(RoomRepository roomRepository, HotelService hotelService) {
+    public RoomService(RoomRepository roomRepository) {
         this.roomRepository = roomRepository;
-        this.hotelService = hotelService;
     }
 
     @Transactional
