@@ -24,10 +24,10 @@
 </header>
 <main class="main-content">
     <div class="left-content">
-        <h1>Welcome to <br><span>KoDoBooking</span></h1>
-        <p>Simplify your booking experience with our quick, reliable, and user-friendly service designed to connect you with the best.</p>
+        <h1>Вітаємо на <br><span>KoDoBooking</span></h1>
+        <p>Спростіть процес бронювання за допомогою нашого швидкого, надійного та зручного сервісу, розробленого для того, щоб подарувати вам найкраще.</p>
         <div class="buttons">
-            <a href="/view-hotels" class="btn-primary">Переглянути готелі</a>
+            <a href="/view-hotels" class="btn-secondary">Переглянути готелі</a>
             <a href="/view-rooms" class="btn-secondary">Переглянути номери</a>
         </div>
     </div>
@@ -35,5 +35,103 @@
         <img src="/images/pool-view.jpg" width="500" height="500" alt="Pool View" />
     </div>
 </main>
+
+<section class="stats-section">
+    <h2>Наші досягнення</h2>
+    <p>KoDoBooking за статистикою - один із найпопулярніших букінг сервісів в Україні.</p>
+    <div class="stats-container">
+        <div class="stat-box">
+            <h3>1,000,000</h3>
+            <p>Готелів</p>
+        </div>
+        <div class="stat-box">
+            <h3 th:text="${hotel.amountOfPlaces}"> </h3>
+            <p>Номерів</p>
+        </div>
+        <div class="stat-box">
+            <h3>100%</h3>
+            <p>Безпечності</p>
+        </div>
+    </div>
+</section>
+
+<section class="features-section">
+    <h2>Чому варто обрати нас?</h2>
+    <p>Дізнайтеся про особливості, які роблять KoDoBooking найкращим ресурсом для всіх ваших потреб у бронюванні.</p>
+    <div class="features-container">
+        <div class="feature-box">
+            <h3>24/7 підтримка</h3>
+            <p>Наша віддана команда доступна цілодобово, щоб допомогти вам з будь-якими запитаннями або проблемами з бронюванням.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Мобільний додаток</h3>
+            <p>Отримуйте доступ до своїх бронювань будь-де за допомогою нашого простого у використанні мобільного додатка, доступного для всіх пристроїв.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Пропозиція для кожного</h3>
+            <p>Наш сервіс може запропонувати найрізноманітніший вибір готелів і номерів, тут ви зможете обрати апартаменти, що підходять саме для вас.</p>
+        </div>
+    </div>
+</section>
+
+<section class="faqs-section">
+    <h2>Питання та відповіді</h2>
+    <p>Відповіді на поширені питання, які допоможуть вам зрозуміти, як найкраще використовувати наш сервіс бронювання.</p>
+    <div class="faqs-container">
+        <div class="faq-box">
+            <h3>Що таке KoDoBooking?</h3>
+            <p>KoDoBooking - це платформа, призначена для спрощення процесу бронювання різних послуг, забезпечуючи швидкий, надійний та зручний досвід користувача.</p>
+        </div>
+        <div class="faq-box">
+            <h3>Як я можу зареєструватися?</h3>
+            <p>Щоб зареєструватися, натисніть кнопку "Зареєструватися" у верхній панелі навігації та заповніть ваші дані.</p>
+        </div>
+        <div class="faq-box">
+            <h3>Чи існує мобільний додаток?</h3>
+            <p>Так, ми плануємо випустити мобільний додаток найближчим часом. Слідкуйте за оновленнями!</p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2024 Kodo</p>
+        <div class="social-media">
+            <a href="https://www.facebook.com"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/twisteddd.mon/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1000px-Instagram_logo_2022.svg.png" alt="Instagram"></a>
+            <a href="https://x.com"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="Twitter"></a>
+            <a href="https://www.youtube.com"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube"></a>
+        </div>
+        <div class="footer-links">
+            <div class="features">
+                <p>Features</p>
+                <ul>
+                    <li><a href="#">Something Great</a></li>
+                    <li><a href="#">Another Thing</a></li>
+                    <li><a href="#">So many Features</a></li>
+                    <li><a href="">It's Amazing</a></li>
+                </ul>
+            </div>
+            <div class="company">
+                <p>Company</p>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Jobs</a></li>
+                </ul>
+            </div>
+            <div class="legal">
+                <p>Legal</p>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
