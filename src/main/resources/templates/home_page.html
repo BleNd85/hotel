@@ -18,8 +18,8 @@
         <a href="#">Our Services</a>
         <a href="#">How It Works</a>
         <a href="#">Contact Us</a>
-        <a href="/register" class="btn">Sign Up</a>
-        <a href="/login" class="btn">Log In</a>
+        <a href="/register" class="btn" sec:authorize="!isAuthenticated()">Реєєстрація</a>
+        <a href="/login" class="btn" sec:authorize="!isAuthenticated()">Авторизація</a>
     </nav>
 </header>
 <main class="main-content">
