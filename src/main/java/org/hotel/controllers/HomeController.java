@@ -25,4 +25,11 @@ public class HomeController {
         model.addAttribute("hotelCount", hotelService.countHotels());
         return "home_page";
     }
+    @GetMapping("/home-page")
+    public String getLoginPage() {
+        return "home_page";
+    }
+
+
 }
+

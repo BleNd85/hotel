@@ -12,13 +12,14 @@
 <body class="homepage">
 <header class="header">
     <div class="logo">
-        <img src="/images/title.png" width="100" height="50" alt="logo">
+        <a href="/home-page"><img src="/images/title.png" width="100" height="50" alt="logo"></a>
     </div>
     <nav class="nav a">
         <a href="#" data-bs-toggle="modal" data-bs-target="#howItWorksModal">Як це працює?</a>
         <a href="#" data-bs-toggle="modal" data-bs-target="#contactUsModal">Зв'яжись з нами</a>
         <a href="/register" class="btn" sec:authorize="!isAuthenticated()">Реєєстрація</a>
         <a href="/login" class="btn" sec:authorize="!isAuthenticated()">Авторизація</a>
+        <a href="/personal_page" class="btn" sec:authorize="isAuthenticated()">Особистий кабінет</a>
     </nav>
 </header>
 

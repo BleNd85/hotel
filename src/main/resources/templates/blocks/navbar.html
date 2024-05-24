@@ -8,7 +8,7 @@
                     aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-md-end" id="navbarNavDarkDropdown">
+            <div class="collapse navbar-collapse justify-content-md-end" id="navbarNavDarkDropdown" >
                 <ul class="navbar-nav justify-content-end">
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
                         <a class="nav-link" href="/login">Авторизація</a>
@@ -19,7 +19,7 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenu" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false" sec:authentication="name">
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu">
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu" style="background-color: #2c2c2c;">
                             <li><a class="dropdown-item" href="/personal_page">Особистий кабінет</a></li>
                             <li><a class="dropdown-item" href="/user-management" sec:authorize='hasRole("ADMIN")'>Керування користувачами</a></li>
                             <li><a class="dropdown-item" href="/hotel-management" sec:authorize='hasRole("ADMIN")'>Керування готелями</a></li>
