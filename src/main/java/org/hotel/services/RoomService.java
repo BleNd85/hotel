@@ -6,7 +6,6 @@ import org.hotel.models.RoomModel;
 import org.hotel.repositories.RoomRepository;
 import org.springframework.stereotype.Service;
 
-import javax.naming.NameNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,8 +28,7 @@ public class RoomService {
         roomModel.setType(type);
         roomModel.setDescription(description);
         roomModel.setHotel(hotel);
-        roomModel.setAmountOfPlaces(amountOfPlaces);
-        hotel.setAmountOfPlaces(amountOfPlaces);
+        roomModel.setAmountOfPlaces(amountOfPlaces != null ? amountOfPlaces : 0);
         return roomRepository.save(roomModel);
     }
 
@@ -46,15 +44,17 @@ public class RoomService {
         return roomRepository.findAllByHotelId(hotelModel.getId());
     }
 
+    @Transactional
     public void deleteRoom(Integer roomId) {
         RoomModel roomModel = roomRepository.findById(roomId).orElse(null);
         if (roomModel != null) {
             HotelModel hotel = roomModel.getHotel();
-            hotel.setAmountOfPlaces(-roomModel.getAmountOfPlaces());
+            if (roomModel.getAmountOfPlaces() != null && hotel.getAmountOfPlaces() != null) {
+                hotel.setAmountOfPlaces(hotel.getAmountOfPlaces() - roomModel.getAmountOfPlaces());
+            }
+            roomRepository.deleteById(roomId);
         }
-        roomRepository.deleteById(roomId);
     }
-
 
     public List<RoomModel> getAll() {
         return roomRepository.findAll();

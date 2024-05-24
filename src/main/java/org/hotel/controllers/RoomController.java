@@ -25,7 +25,6 @@ public class RoomController {
     private final UserService userService;
     private final BookingService bookingService;
 
-
     @Autowired
     public RoomController(RoomService roomService, HotelService hotelService, UserService userService, BookingService bookingService) {
         this.roomService = roomService;
@@ -52,7 +51,6 @@ public class RoomController {
         return registeredRoom == null ? "error_page" : "redirect:/room-management";
     }
 
-    // Mapping for user to view all rooms
     @GetMapping("/view-rooms")
     public String viewRooms(Model model) {
         List<RoomModel> rooms = roomService.getAll();
@@ -60,8 +58,6 @@ public class RoomController {
         return "view_rooms";
     }
 
-
-    // Mapping for user to view room details
     @GetMapping("/room/{id}")
     public String viewRoomDetails(@PathVariable("id") Integer id, Model model, Principal principal) {
         RoomModel room = roomService.findById(id);
@@ -71,7 +67,7 @@ public class RoomController {
             model.addAttribute("user", user);
             return "view_room_details";
         } else {
-            return "error_page"; // Handle the case where the room is not found
+            return "error_page";
         }
     }
 
@@ -81,3 +77,4 @@ public class RoomController {
         return "redirect:/room-management";
     }
 }
+
