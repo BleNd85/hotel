@@ -6,6 +6,133 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.homepage {
+    background-color: white;
+    color: #2c2c2c; /* Темный цвет текста */
+}
+
+/* Стили для header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #2c2c2c;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: white;
+}
+
+.nav .btn {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 4px;
+    background-color: transparent;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav .btn:hover {
+    background-color: white;
+    color: #2c2c2c;
+}
+
+/* Основные стили для страницы */
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #2c2c2c; /* Темный цвет текста */
+}
+
+.left-content {
+    max-width: 50%;
+}
+
+.left-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.left-content h1 span {
+    display: block;
+    font-size: 3rem;
+    color: #2c2c2c; /* Темный цвет текста */
+}
+
+.left-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.right-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Дополнительные стили для формы и других элементов */
+.form-label {
+    margin-bottom: 1rem;
+    background-color: rgba(53, 53, 53, 0.93);
+    padding: 0 0.25rem;
+    color: #fff;
+}
+
+.button-container {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 .bg-image {
     background-image: url('https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?cs=srgb&dl=pexels-pixabay-258154.jpg&fm=jpg');
     height: 300px;
@@ -42,6 +169,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
+
 .form-outline label {
     position: absolute;
     top: -0.75rem;
@@ -49,25 +177,6 @@ body {
     background-color: rgba(53, 53, 53, 0.93);
     padding: 0 0.25rem;
     color: #fff;
-}
-.error-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
 }
 
 input:-webkit-autofill,
@@ -78,6 +187,7 @@ input:-webkit-autofill:focus {
 input[data-autocompleted] {
     background-color: transparent !important;
 }
-.padding-bottom{
+
+.padding-bottom {
     padding-bottom: 10%;
 }
