@@ -20,11 +20,11 @@
                            data-bs-toggle="dropdown" aria-expanded="false" sec:authentication="name">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu">
-                            <li><a class="dropdown-item" href="/personal_page" sec:authorize='hasRole("ADMIN")'>Особистий кабінет</a></li>
+                            <li><a class="dropdown-item" href="/personal_page">Особистий кабінет</a></li>
                             <li><a class="dropdown-item" href="/user-management" sec:authorize='hasRole("ADMIN")'>Керування користувачами</a></li>
                             <li><a class="dropdown-item" href="/hotel-management" sec:authorize='hasRole("ADMIN")'>Керування готелями</a></li>
                             <li><a class="dropdown-item" href="/room-management" sec:authorize='hasRole("ADMIN")'>Керування кімнатами</a></li>
-                            <li><a class="dropdown-item" href="/booking-management">Керування бронюваннями</a></li>
+                            <li><a class="dropdown-item" href="/booking-management"sec:authorize='hasRole("ADMIN")'>Керування бронюваннями</a></li>
                             <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
                                    data-bs-target="#logOutSubmit">Вийти</a></li>
                         </ul>

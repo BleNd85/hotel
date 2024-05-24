@@ -62,4 +62,7 @@ public class BookingService {
     public void save(BookingModel bookingModel) {
         bookingRepository.save(bookingModel);
     }
+    public List<BookingModel> findByUsername(String username){
+        return bookingRepository.findByUserName(username);
+    }
 }

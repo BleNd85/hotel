@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.NameNotFoundException;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -61,6 +62,7 @@ public class BookingController {
             return "redirect:/room/" + roomId;
         }
     }
+
     @PostMapping("/booking-management/change-booking-status")
     public String changeBookingStatus(@RequestParam Integer bookingId, @RequestParam BookingStatus bookingStatus) throws NameNotFoundException {
         BookingModel bookingModel = bookingService.findFirstById(bookingId);
@@ -69,5 +71,11 @@ public class BookingController {
         return "redirect:/booking-management";
     }
 
+    @GetMapping("/view-bookings")
+    public String viewBookings(Model model, Principal principal) {
+        List<BookingModel> bookingModels = bookingService.findByUsername(principal.getName());
+        model.addAttribute("bookings", bookingModels);
+        return "view_bookings";
+    }
 }
 
