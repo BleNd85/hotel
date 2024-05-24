@@ -12,30 +12,30 @@
     <h2 class="mb-4" th:text="${room.name}">Room Name</h2>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Description</h5>
-            <p class="card-text" th:text="${room.description}">Room description here...</p>
+            <h5 class="card-title">Опис кімнати</h5>
+            <p class="card-text" th:text="${room.description}">Опис кімнати...</p>
 
-            <h5 class="card-title">Room Number</h5>
-            <p class="card-text" th:text="${room.roomNumber}">Room number here...</p>
+            <h5 class="card-title">Номер кімнати</h5>
+            <p class="card-text" th:text="${room.roomNumber}">Номер кімнати...</p>
 
-            <h5 class="card-title">Type</h5>
-            <p class="card-text" th:text="${room.type}">Room type here...</p>
+            <h5 class="card-title">Тип кімнати</h5>
+            <p class="card-text" th:text="${room.type}">Тип кімнати...</p>
 
-            <h5 class="card-title">Price Per Night</h5>
-            <p class="card-text" th:text="${room.pricePerNight}">Price per night here...</p>
+            <h5 class="card-title">Ціна за одну ніч</h5>
+            <p class="card-text" th:text="${room.pricePerNight}">Ціна за одну ніч...</p>
 
-            <h5 class="card-title">Amount of Beds</h5>
-            <p class="card-text" th:text="${room.amountOfPlaces}">Amount of beds here...</p>
+            <h5 class="card-title">Кількість ліжкових місць</h5>
+            <p class="card-text" th:text="${room.amountOfPlaces}">Кількість ліжкових місць...</p>
 
-            <h5 class="card-title">Hotel</h5>
-            <p class="card-text" th:text="${room.hotel.name}">Hotel name here...</p>
+            <h5 class="card-title">Готель</h5>
+            <p class="card-text" th:text="${room.hotel.name}">Готель...</p>
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bookingSubmit"
                     th:attr="room-id=${room.id},user-id=${user.id}">
                 Забронювати
             </button>
         </div>
     </div>
-    <a th:href="@{/view-rooms}" class="btn btn-secondary mt-3">Back to List</a>
+    <a th:href="@{/view-rooms}" class="btn btn-secondary mt-3">Назад до списку</a>
 </div>
 
 <div class="modal fade" id="bookingSubmit" tabindex="-1" aria-labelledby="bookingSubmitLabel"
@@ -50,16 +50,16 @@
                     <div class="form-outline mb-4">
                         <input type="date" name="startDate" id="startDate" required
                                class="form-control bg-transparent text-dark"/>
-                        <label class="form-label" for="startDate">Start date</label>
+                        <label class="form-label" for="startDate">Дата початку оренди</label>
                     </div>
                     <div class="form-outline mb-4">
                         <input type="date" name="endDate" id="endDate" required
                                class="form-control bg-transparent text-dark"/>
-                        <label class="form-label" for="endDate">End date</label>
+                        <label class="form-label" for="endDate">Дата кінця оренди</label>
                     </div>
                     <div class="form-outline mb-4">
                         <textarea type="text" name="comment" id="comment" class="form-control bg-transparent text-dark" rows="3"></textarea>
-                        <label class="form-label" for="comment">Comment *if you want</label>
+                        <label class="form-label" for="comment">Побажання(опціонально)</label>
                     </div>
                     <input type="hidden" name="roomId" id="roomId" hidden="hidden">
                     <input type="hidden" name="userId" id="userId" hidden="hidden">

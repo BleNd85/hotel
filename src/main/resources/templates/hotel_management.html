@@ -9,17 +9,17 @@
 <body>
 <div th:replace="~{blocks/navbar}"></div>
 <div class="container mt-5">
-    <h2 class="mb-4">Hotel List</h2>
+    <h2 class="mb-4">Список готелів</h2>
     <table class="table table-bordered">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Location</th>
-            <th>Creation Date</th>
-            <th>Amount of beds</th>
-            <th>Actions</th>
+            <th>Назва</th>
+            <th>Опис</th>
+            <th>Місцезнаходження</th>
+            <th>Дата створення</th>
+            <th>Кількість ліжкових місць</th>
+            <th>Видалення</th>
         </tr>
         </thead>
         <tbody>
@@ -53,17 +53,17 @@
                     <div class="form-outline mb-3">
                         <input type="text" name="name" id="name" required
                                class="form-control bg-transparent text-dark"/>
-                        <label class="form-label" for="name">Name</label>
+                        <label class="form-label" for="name">Назва</label>
                     </div>
                     <div class="form-outline mb-3">
                         <input type="text" name="description" id="description" required
                                class="form-control bg-transparent text-dark"/>
-                        <label class="form-label" for="description">Description</label>
+                        <label class="form-label" for="description">Опис</label>
                     </div>
                     <div class="form-outline mb-3">
                         <input type="text" name="location" id="location" required
                                class="form-control bg-transparent text-dark"/>
-                        <label class="form-label" for="location">Location</label>
+                        <label class="form-label" for="location">Місцезнаходження</label>
                     </div>
                     <button type="submit" class="btn btn-dark">Додати</button>
                 </form>

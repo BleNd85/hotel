@@ -11,7 +11,7 @@
 <div class="container mt-5">
     <h2 class="mb-4" th:text="${hotel.name}">Hotel Name</h2>
     <p class="mb-4" th:text="${hotel.description}">Hotel Description</p>
-    <h3>Rooms</h3>
+    <h3>Кімнати</h3>
     <div class="list-group">
         <a th:each="room : ${rooms}" th:href="@{/room/{id}(id=${room.id})}" class="list-group-item list-group-item-action">
             <h5 class="mb-1" th:text="${room.name}">Room Name</h5>
@@ -19,7 +19,7 @@
             <small th:text="'Price per Night: $' + ${room.pricePerNight}">Price per Night</small>
         </a>
     </div>
-    <a th:href="@{/view-hotels}" class="btn btn-secondary mt-3">Back to Hotels</a>
+    <a th:href="@{/view-hotels}" class="btn btn-secondary mt-3">Назад до готелів</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
