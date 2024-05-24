@@ -1,9 +1,9 @@
 package org.hotel.controllers;
 
-import ch.qos.logback.core.model.Model;
 import org.hotel.models.HotelModel;
 import org.hotel.services.HotelService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
@@ -23,12 +23,8 @@ public class HomeController {
         int amountOfPlaces = 0;
         for (HotelModel hotelModel : hotelModelList) {
             amountOfPlaces += hotelModel.getAmountOfPlaces();
-
-
         }
-
-
-
+        model.addAttribute("amountOfPlace", amountOfPlaces);
         return "home_page";
 
 
