@@ -11,4 +11,5 @@ public interface HotelRepository extends JpaRepository<HotelModel, Integer> {
 
     Optional<HotelModel> findByName(String name);
     Optional<HotelModel> findFirstById(Integer id);
+
 }

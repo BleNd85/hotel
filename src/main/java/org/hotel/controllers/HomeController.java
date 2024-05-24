@@ -20,12 +20,8 @@ public class HomeController {
 
     @GetMapping
     public String getHomePage(Model model) {
-        List<HotelModel> hotelModelList = hotelService.getAll();
-        int amountOfPlaces = 0;
-        for (HotelModel hotelModel : hotelModelList) {
-            amountOfPlaces += hotelModel.getAmountOfPlaces();
-        }
-        model.addAttribute("amountOfPlace", amountOfPlaces);
+
+        model.addAttribute("amountOfPlace", hotelService.countPlaces());
         model.addAttribute("hotelCount", hotelService.countHotels());
         return "home_page";
     }

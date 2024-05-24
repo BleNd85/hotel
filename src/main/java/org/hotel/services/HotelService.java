@@ -53,7 +53,18 @@ public class HotelService {
     public HotelModel findById(Integer id) {
         return hotelRepository.findFirstById(id).orElse(null);
     }
-    public long countHotels() {return hotelRepository.count(); }
+
+    public Long countHotels() {
+        return hotelRepository.count();
+    }
+    public Integer countPlaces(){
+        List<HotelModel> hotelModelList = hotelRepository.findAll();
+        int amountOfPlaces = 0;
+        for (HotelModel hotelModel : hotelModelList) {
+            amountOfPlaces += hotelModel.getAmountOfPlaces();
+        }
+        return amountOfPlaces;
+    }
 
 }
 
