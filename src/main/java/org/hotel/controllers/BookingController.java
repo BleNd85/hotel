@@ -8,12 +8,15 @@ import org.hotel.services.BookingService;
 import org.hotel.services.RoomService;
 import org.hotel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.NameNotFoundException;
+import javax.xml.crypto.Data;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -82,10 +85,25 @@ public class BookingController {
     public String viewBookingDetails(@PathVariable Integer id, Model model, Principal principal) throws NameNotFoundException {
         BookingModel booking = bookingService.findFirstById(id);
         UserModel user = userService.findByUsername(principal.getName());
-        System.out.println(user);
         if (user.getId().equals(booking.getUser().getId())) {
             model.addAttribute("booking", booking);
             return "view_booking_details";
+        }
+        return "error_page";
+    }
+
+    @PostMapping("/view-bookings/booking/{id}/edit")
+    public String editBooking(@PathVariable Integer id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+                              String comment, Principal principal) throws NameNotFoundException {
+        UserModel user = userService.findByUsername(principal.getName());
+        BookingModel booking = bookingService.findFirstById(id);
+        if (booking.getUser().equals(user)) {
+            booking.setBookingStatus(BookingStatus.PENDING);
+            booking.setStartDate(startDate);
+            booking.setEndDate(endDate);
+            booking.setComment(comment);
+            bookingService.save(booking);
+            return "redirect:/view-bookings/booking/" + id;
         }
         return "error_page";
     }

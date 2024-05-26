@@ -56,3 +56,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
         calculateTotalPrice(); // Перерахунок загальної ціни при відкритті модального вікна
     });
 });
+document.addEventListener('DOMContentLoaded', (event) => {
+    const startDateInput = document.getElementById('startDateEdit');
+    const endDateInput = document.getElementById('endDateEdit');
+    const bookingEditModal = document.getElementById('bookingEdit');
+
+    // Get current date
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const yyyy = today.getFullYear();
+    const minDate = yyyy + '-' + mm + '-' + dd;
+
+    // Set min date for startDateInput
+    startDateInput.setAttribute('min', minDate);
+
+    startDateInput.addEventListener('change', function() {
+        endDateInput.setAttribute('min', this.value);
+    });
+
+    endDateInput.addEventListener('change', function() {
+        startDateInput.setAttribute('max', this.value);
+    });
+
+    bookingEditModal.addEventListener('show.bs.modal', function(event) {
+        var button = event.relatedTarget;
+        var bookingId = button.getAttribute('booking-id');
+        bookingEditModal.querySelector('form').setAttribute('action', '/view-bookings/booking/' + bookingId + '/edit');
+    });
+});
