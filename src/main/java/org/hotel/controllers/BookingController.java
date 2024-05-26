@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.naming.NameNotFoundException;
 import javax.xml.crypto.Data;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -37,11 +38,13 @@ public class BookingController {
         List<BookingModel> pendingBookings = bookingService.findByStatus(BookingStatus.PENDING);
         List<BookingModel> acceptedBookings = bookingService.findByStatus(BookingStatus.ACCEPTED);
         List<BookingModel> canceledBookings = bookingService.findByStatus(BookingStatus.CANCELED);
+        List<BookingModel> completeBookings = bookingService.findByStatus(BookingStatus.COMPLETE);
         List<BookingStatus> bookingStatuses = bookingService.getAllStatuses();
         model.addAttribute("bookingStatus", bookingStatuses);
         model.addAttribute("pendingBookings", pendingBookings);
         model.addAttribute("acceptedBookings", acceptedBookings);
         model.addAttribute("canceledBookings", canceledBookings);
+        model.addAttribute("completeBookings", completeBookings);
         return "booking-management";
     }
 
@@ -76,7 +79,12 @@ public class BookingController {
 
     @GetMapping("/view-bookings")
     public String viewBookings(Model model, Principal principal) {
-        List<BookingModel> bookings = bookingService.findByUsername(principal.getName());
+        UserModel user = userService.findByUsername(principal.getName());
+        List<BookingModel> bookings = bookingService.findByUsername(user.getName());
+        model.addAttribute("PENDING", BookingStatus.PENDING);
+        model.addAttribute("ACCEPTED", BookingStatus.ACCEPTED);
+        model.addAttribute("CANCELED", BookingStatus.CANCELED);
+        model.addAttribute("COMPLETE", BookingStatus.COMPLETE);
         model.addAttribute("bookings", bookings);
         return "view_bookings";
     }

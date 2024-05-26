@@ -10,7 +10,7 @@
 <body>
 <div th:replace="~{blocks/navbar}"></div>
 <div class="container mt-5">
-    <h2>My bookings</h2>
+    <h2>Мої бронювання</h2>
     <div class="row mt-4">
         <div class="col-md-4 mb-4" th:each="booking : ${bookings}">
             <div class="card">
@@ -23,6 +23,12 @@
                     </p>
                     <p class="card-text">До сплати: <span th:text="${booking.price}">To pay</span> <span> грн.</span>
                     </p>
+                    <div class="card-text fw-bold">
+                        <p th:if="${booking.bookingStatus == ACCEPTED}" class="text-success">Підтвeрджено</p>
+                        <p th:if="${booking.bookingStatus == PENDING}" class="text-warning">Очікується</p>
+                        <p th:if="${booking.bookingStatus == CANCELED}" class="text-danger">Скасовано</p>
+                        <p th:if="${booking.bookingStatus == COMPLETE}" class="text-black">Виконано</p>
+                    </div>
                     <a th:href="@{/view-bookings/booking/{id}(id=${booking.id})}" class="btn btn-outline-dark">Детальніше</a>
                 </div>
             </div>

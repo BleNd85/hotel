@@ -170,6 +170,60 @@
     </div>
 </div>
 
+<div class="container mt-5 overflow-auto" style="max-width: 1600px">
+    <a type="button" data-bs-toggle="collapse" href="#collapseCompleteBookings" role="button" aria-expanded="false"
+       aria-controls="collapseCanceledBookings" style="text-decoration: none;">
+        <h2 class="mb-4 text-dark">Виконані бронювання</h2>
+    </a>
+    <div class="collapse" id="collapseCompleteBookings">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Кімната</th>
+                <th>Дата початку</th>
+                <th>Дата закінчення</th>
+                <th>Ім'я користувача</th>
+                <th>Прізвище користувача</th>
+                <th>Коментар</th>
+                <th>Статус</th>
+                <th>Змінити статус</th>
+                <th>Видалити</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="completeBooking:${completeBookings}">
+                <td th:text="${completeBooking.id}"></td>
+                <td th:text="${completeBooking.room.name}"></td>
+                <td th:text="${#dates.format(completeBooking.startDate, 'dd-MM-yyyy')}"></td>
+                <td th:text="${#dates.format(completeBooking.endDate, 'dd-MM-yyyy')}"></td>
+                <td th:text="${completeBooking.user.name}"></td>
+                <td th:text="${completeBooking.user.surname}"></td>
+                <td th:text="${completeBooking.comment}"></td>
+                <td th:text="${completeBooking.bookingStatus}"></td>
+                <td>
+                    <form th:action="@{/booking-management/change-booking-status}" method="post" class="d-flex">
+                        <input type="hidden" name="bookingId" th:value="${completeBooking.id}"/>
+                        <select name="bookingStatus" required class="form-control bg-transparent text-dark">
+                            <option th:each="bookingStatus : ${bookingStatus}" th:value="${bookingStatus}"
+                                    th:text="${bookingStatus}"
+                                    th:selected="${bookingStatus == completeBooking.bookingStatus}"></option>
+                        </select>
+                        <button class="btn btn-success mx-2" type="submit">Змінити</button>
+                    </form>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#deleteBookingModal"
+                            th:attr="data-id=${completeBooking.id}">Видалити
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <div class="modal fade" id="deleteBookingModal" tabindex="-1" aria-labelledby="deleteBookingModal"
      aria-hidden="true">
     <div class="modal-dialog">

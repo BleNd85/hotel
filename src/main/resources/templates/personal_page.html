@@ -61,12 +61,13 @@
     </div>
 </div>
 <div class="container mt-5" sec:authorize='hasAnyRole("USER", "ADMIN")'>
-    <div class="row">
+    <h4>Вітаємо, <span th:text="${user.name}">Ім'я, прізвище</span> <span th:text=" ${user.surname}"></span></h4>
+    <div class="row mt-4">
         <div class="col-md-4">
             <div class="card border-dark mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Бронювання</h5>
-                    <p class="card-text">.</p>
+                    <p class="card-text">Тут ви можете переглянути свої бронювання.</p>
                     <a href="/view-bookings" class="btn btn-outline-dark">Перейти</a>
                 </div>
             </div>

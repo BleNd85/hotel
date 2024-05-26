@@ -27,6 +27,8 @@
             <p class="card-text" th:text="${#dates.format(booking.endDate, 'dd-MM-yyyy')}">дата</p>
             <h5 class="card-title mt-3">Ваш коментар</h5>
             <p class="card-text" th:text="${booking.comment}">коментар</p>
+            <h5 class="card-title mt-3">До сплати</h5>
+            <p class="card-text"><span th:text="${booking.price}">До сплати</span> <span> грн.</span></p>
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bookingEdit"
                     th:attr="booking-id=${booking.id}">
                 Редагувати
