@@ -26,6 +26,7 @@ public class BookingModel {
     private Date endDate;
     private BookingStatus bookingStatus;
     private String comment;
+    private Double price;
 
     public Integer getId() {
         return id;
@@ -83,6 +84,14 @@ public class BookingModel {
         this.comment = comment;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "BookingModel{" +
@@ -93,6 +102,7 @@ public class BookingModel {
                 ", endDate=" + endDate +
                 ", bookingStatus=" + bookingStatus +
                 ", comment='" + comment + '\'' +
+                ", price=" + price +
                 '}';
     }
 
