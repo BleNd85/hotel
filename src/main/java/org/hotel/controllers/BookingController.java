@@ -78,14 +78,16 @@ public class BookingController {
         return "view_bookings";
     }
 
-    @GetMapping("/booking/{id}")
+    @GetMapping("/view-bookings/booking/{id}")
     public String viewBookingDetails(@PathVariable Integer id, Model model, Principal principal) throws NameNotFoundException {
         BookingModel booking = bookingService.findFirstById(id);
-        if (principal.getName().equals(booking.getUser().getName())) {
+        UserModel user = userService.findByUsername(principal.getName());
+        System.out.println(user);
+        if (user.getId().equals(booking.getUser().getId())) {
             model.addAttribute("booking", booking);
             return "view_booking_details";
         }
-        return null;
+        return "error_page";
     }
 }
 
