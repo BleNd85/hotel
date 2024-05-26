@@ -29,9 +29,15 @@
             <p class="card-text" th:text="${booking.comment}">коментар</p>
             <h5 class="card-title mt-3">До сплати</h5>
             <p class="card-text"><span th:text="${booking.price}">До сплати</span> <span> грн.</span></p>
+            <h5 class="card-title mt-3">Місце розташування</h5>
+            <p class="card-text"><span th:text="${booking.room.hotel.location}">Місце розташування</span></p>
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bookingEdit"
                     th:attr="booking-id=${booking.id}">
                 Редагувати
+            </button>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteBookingModal"
+                    th:attr="booking-id=${booking.id}">
+                Видалити
             </button>
         </div>
     </div>
@@ -57,6 +63,25 @@
                         <label class="form-label" for="commentEdit">Побажання (опціонально)</label>
                     </div>
                     <button type="submit" class="btn btn-success">Зберегти зміни</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteBookingModal" tabindex="-1" aria-labelledby="deleteBookingModal"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteBookingModalLabel">Підтвердження видалення</h5>
+            </div>
+            <div class="modal-body">
+                Ви дійсно хочете видалити це бронювання?
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/view-bookings/booking/{id}/delete(id=${booking.id})}" method="post">
+                    <button type="submit" class="btn btn-danger">Підтвердити</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
                 </form>
             </div>
         </div>

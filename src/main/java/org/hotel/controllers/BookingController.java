@@ -115,5 +115,16 @@ public class BookingController {
         }
         return "error_page";
     }
+
+    @PostMapping("/view-bookings/booking/{id}/delete")
+    public String deleteBooking(@PathVariable("id") Integer id, Principal principal) throws NameNotFoundException {
+        BookingModel booking = bookingService.findFirstById(id);
+        UserModel user = userService.findByUsername(principal.getName());
+        if (user.getId().equals(booking.getUser().getId())) {
+            bookingService.deleteBooking(id);
+            return "redirect:/view-bookings";
+        }
+        return "error_page";
+    }
 }
 
