@@ -10,20 +10,34 @@
 <body>
 <div th:replace="~{blocks/navbar}"></div>
 <div class="container mt-5">
-    <h2 class="mb-4">Hotels</h2>
+    <h2 class="mb-4">Доступні готелі</h2>
     <form action="#" th:action="@{/view-hotels}" method="get">
         <div class="input-group mb-3">
-            <input type="text" name="keyword" class="form-control" placeholder="Search by keyword" aria-label="Search by keyword" aria-describedby="button-addon2">
+            <input type="text" name="keyword" class="form-control" placeholder="Search by keyword"
+                   aria-label="Search by keyword" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Пошук</button>
             <button class="btn btn-outline-secondary" type="submit">Скинути фільтри</button>
         </div>
     </form>
-    <div class="list-group">
-        <a th:each="hotel : ${hotels}" th:href="@{/hotel/{id}(id=${hotel.id})}" class="list-group-item list-group-item-action">
-            <h6 class="mb-1" th:text="${hotel.name}">Hotel Name</h6>
-            <p class="mb-1" th:text="${hotel.location}">Location</p>
-            <p class="mb-1" th:text="${hotel.description}">Room Description</p>
-        </a>
+    <div class="row g-4">
+        <div class="col-12">
+            <a th:each="hotel : ${hotels}" th:href="@{/hotel/{id}(id=${hotel.id})}" class="text-black text-decoration-none">
+                <div class="card w-75  mt-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body p-4">
+                                <h5 class="card-title" th:text="${hotel.name}">Hotel Name</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" th:text="${hotel.location}">Location</h6>
+                                <p class="card-text" th:text="${hotel.description}">Description</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <img th:src="${hotel.imagePath}" class="img-fluid rounded-end img-thumbnail p-2" alt="Room Image">
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 

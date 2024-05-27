@@ -22,8 +22,8 @@
                             <p class="card-text" th:text="${room.hotel.location}">Location</p>
                             <p class="card-text" th:text="${room.description}">Room Description</p>
                             <p class="card-text">
-                                <small th:text="'Room Number: ' + ${room.roomNumber}">Room Number</small><br>
-                                <small th:text="'Price per Night: $' + ${room.pricePerNight}">Price per Night</small>
+                                <small th:text="'Номер кімнати: ' + ${room.roomNumber}">Room Number</small><br>
+                                <small th:text="'Ціна за ніч: ' + ${room.pricePerNight} + ' грн.'">Price per Night</small>
                             </p>
                             <a th:href="@{/room/{id}(id=${room.id})}" class="btn btn-secondary">Детальніше</a>
                         </div>
