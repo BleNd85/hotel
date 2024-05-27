@@ -1,4 +1,3 @@
-// HotelController.java
 package org.hotel.controllers;
 
 import org.hotel.models.HotelModel;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -25,8 +25,24 @@ public class HotelController {
     }
 
     @GetMapping("/hotel-management")
-    public String getHotelManagement(Model model) {
-        List<HotelModel> hotels = hotelService.getAll();
+    public String getHotelManagement(
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "sortBy", required = false) String sortBy,
+            Model model) {
+        List<HotelModel> hotels;
+
+        if (keyword != null && !keyword.isEmpty()) {
+            hotels = hotelService.searchHotels(keyword);
+        } else {
+            hotels = hotelService.getAll();
+        }
+
+        if ("name".equals(sortBy)) {
+            hotels.sort(Comparator.comparing(HotelModel::getName));
+        } else if ("location".equals(sortBy)) {
+            hotels.sort(Comparator.comparing(HotelModel::getLocation));
+        }
+
         model.addAttribute("hotels", hotels);
         return "hotel_management";
     }

@@ -2,18 +2,13 @@ package org.hotel.controllers;
 
 import org.hotel.models.UserModel;
 import org.hotel.services.UserService;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Comparator;
 import java.util.List;
-
 
 @Controller
 public class UserController {
@@ -31,7 +26,7 @@ public class UserController {
         UserModel updatedUser = userService.updateUser(id, username, email, name, surname);
         if (updatedUser == null) {
             model.addAttribute("error", "An error occurred while updating the user.");
-            return "errorl";
+            return "error_page";
         }
         return "redirect:/user-management";
     }
@@ -46,7 +41,6 @@ public class UserController {
     public String getLoginPage() {
         return "login";
     }
-
 
     @GetMapping("/user-management")
     public String getCustomerManagement(
