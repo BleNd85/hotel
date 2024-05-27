@@ -1,5 +1,6 @@
 package org.hotel.services;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import org.hotel.models.RoleModel;
 import org.hotel.models.UserModel;
@@ -42,15 +43,20 @@ public class UserService {
             return userRepository.save(userModel);
         }
     }
-    //delete on release
-//    @PostConstruct
-//    public void postConstruct() {
-//        UserModel userAdmin = new UserModel();
-//        userAdmin.setRole(RoleModel.ADMIN);
-//        userAdmin.setLogin("admin");
-//        userAdmin.setPassword(bCryptPasswordEncoder.encode("admin"));
-//        userRepository.save(userAdmin);
-//    }
+
+    @PostConstruct
+    public void postConstruct() {
+        if(userRepository.findFirstByUsername("admin").isEmpty()){
+            UserModel userAdmin = new UserModel();
+            userAdmin.setRole(RoleModel.ADMIN);
+            userAdmin.setUsername("admin");
+            userAdmin.setPassword(bCryptPasswordEncoder.encode("admin"));
+            userAdmin.setEmail("admin@gmail.com");
+            userAdmin.setName("Admin");
+            userAdmin.setSurname("Adminchenko");
+            userRepository.save(userAdmin);
+        }
+    }
 
 
     public UserModel findByUsername(String username) throws UsernameNotFoundException {
