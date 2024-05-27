@@ -12,27 +12,28 @@
 <div class="container mt-5">
     <h2 class="mb-4">Доступні кімнати</h2>
     <div class="row g-4">
-        <div class="col-12" th:each="room : ${rooms}">
-            <div class="card mb-3 h-100">
-                <div class="row g-0">
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted" th:text="${room.hotel.name}">Hotel Name</h6>
-                            <h5 class="card-title" th:text="${room.name}">Room Name</h5>
-                            <p class="card-text" th:text="${room.hotel.location}">Location</p>
-                            <p class="card-text" th:text="${room.description}">Room Description</p>
-                            <p class="card-text">
-                                <small th:text="'Номер кімнати: ' + ${room.roomNumber}">Room Number</small><br>
-                                <small th:text="'Ціна за ніч: ' + ${room.pricePerNight} + ' грн.'">Price per Night</small>
-                            </p>
-                            <a th:href="@{/room/{id}(id=${room.id})}" class="btn btn-secondary">Детальніше</a>
+        <div class="col-12 w-75">
+            <a class="text-black text-decoration-none" th:each="room : ${rooms}"
+               th:href="@{/room/{id}(id=${room.id})}">
+                <div class="card mt-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body p-2">
+                                <h6 class="card-subtitle mb-2" th:text="${room.hotel.name}">Hotel Name</h6>
+                                <h5 class="card-title" th:text="${room.name}">Room Name</h5>
+                                <p class="card-text" th:text="${room.hotel.location}">Location</p>
+                                <p class="card-text" th:text="${room.description}">Room Description</p>
+                                <p class="card-text" th:text="'Номер кімнати: ' + ${room.roomNumber}">Room Number</p>
+                                <p class="card-text" th:text="'Ціна за ніч: ' + ${room.pricePerNight} + ' грн.'">Price per Night</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <img th:src="${room.imagePath}" class="img-fluid rounded-end img-thumbnail p-2"
+                                 alt="Room Image">
                         </div>
                     </div>
-                    <div class="col-md-4 d-flex align-items-center">
-                        <img th:src="${room.imagePath}" class="img-fluid rounded-start" style="padding: 1rem" alt="Room Image">
-                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
