@@ -11,14 +11,32 @@
 <div th:replace="~{blocks/navbar}"></div>
 <div class="container mt-5">
     <h2 class="mb-4" th:text="${hotel.name}">Hotel Name</h2>
-    <p class="mb-4" th:text="${hotel.description}">Hotel Description</p>
+    <h6 class="mb-4" th:text="${hotel.description}">Hotel Description</h6>
     <h3>Кімнати</h3>
-    <div class="list-group">
-        <a th:each="room : ${rooms}" th:href="@{/room/{id}(id=${room.id})}" class="list-group-item list-group-item-action">
-            <h5 class="mb-1" th:text="${room.name}">Room Name</h5>
-            <p class="mb-1" th:text="${room.description}">Room Description</p>
-            <small th:text="'Price per Night: $' + ${room.pricePerNight}">Price per Night</small>
-        </a>
+    <div class="row g-4">
+        <div class="col-12 w-75">
+            <a class="text-black text-decoration-none" th:each="room : ${rooms}"
+               th:href="@{/room/{id}(id=${room.id})}">
+                <div class="card mt-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body p-2">
+                                <h6 class="card-subtitle mb-2" th:text="${room.hotel.name}">Hotel Name</h6>
+                                <h5 class="card-title" th:text="${room.name}">Room Name</h5>
+                                <p class="card-text" th:text="${room.hotel.location}">Location</p>
+                                <p class="card-text" th:text="${room.description}">Room Description</p>
+                                <p class="card-text" th:text="'Номер кімнати: ' + ${room.roomNumber}">Room Number</p>
+                                <p class="card-text" th:text="'Ціна за ніч: ' + ${room.pricePerNight} + ' грн.'">Price per Night</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <img th:src="${room.imagePath}" class="img-fluid rounded-end img-thumbnail p-2"
+                                 alt="Room Image">
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
     <a th:href="@{/view-hotels}" class="btn btn-secondary mt-3">Назад до готелів</a>
 </div>
