@@ -65,6 +65,9 @@ public class HotelService {
         }
         return amountOfPlaces;
     }
+    public List<HotelModel> searchHotels(String keyword) {
+        return hotelRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrLocationContainingIgnoreCase(keyword, keyword, keyword);
+    }
 
 }
 

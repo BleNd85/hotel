@@ -57,8 +57,13 @@ public class HotelController {
     }
 
     @GetMapping("/view-hotels")
-    public String viewHotels(Model model) {
-        List<HotelModel> hotels = hotelService.getAll();
+    public String viewHotels(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        List<HotelModel> hotels;
+        if (keyword != null && !keyword.isEmpty()) {
+            hotels = hotelService.searchHotels(keyword);
+        } else {
+            hotels = hotelService.getAll();
+        }
         model.addAttribute("hotels", hotels);
         return "view_hotels";
     }
