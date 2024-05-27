@@ -18,7 +18,6 @@ public class RoomModel {
     private String type;
     private String description;
     private Double pricePerNight;
-    private Boolean isAvailable;
     private Integer amountOfPlaces = 0;
     private String imagePath;
 
@@ -78,13 +77,6 @@ public class RoomModel {
         this.pricePerNight = pricePerNight;
     }
 
-    public Boolean getAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(Boolean available) {
-        isAvailable = available;
-    }
 
     public Integer getAmountOfPlaces() {
         return amountOfPlaces;
@@ -102,17 +94,18 @@ public class RoomModel {
         this.amountOfPlaces += amountOfPlaces;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RoomModel roomModel = (RoomModel) o;
-        return Objects.equals(id, roomModel.id) && Objects.equals(hotel, roomModel.hotel) && Objects.equals(roomNumber, roomModel.roomNumber) && Objects.equals(name, roomModel.name) && Objects.equals(type, roomModel.type) && Objects.equals(description, roomModel.description) && Objects.equals(pricePerNight, roomModel.pricePerNight) && Objects.equals(isAvailable, roomModel.isAvailable) && Objects.equals(amountOfPlaces, roomModel.amountOfPlaces);
+        return Objects.equals(id, roomModel.id) && Objects.equals(hotel, roomModel.hotel) && Objects.equals(roomNumber, roomModel.roomNumber) && Objects.equals(name, roomModel.name) && Objects.equals(type, roomModel.type) && Objects.equals(description, roomModel.description) && Objects.equals(pricePerNight, roomModel.pricePerNight) && Objects.equals(amountOfPlaces, roomModel.amountOfPlaces) && Objects.equals(imagePath, roomModel.imagePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, hotel, roomNumber, name, type, description, pricePerNight, isAvailable, amountOfPlaces);
+        return Objects.hash(id, hotel, roomNumber, name, type, description, pricePerNight, amountOfPlaces, imagePath);
     }
 
     @Override
@@ -125,7 +118,6 @@ public class RoomModel {
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 ", pricePerNight=" + pricePerNight +
-                ", isAvailable=" + isAvailable +
                 ", amountOfPlaces=" + amountOfPlaces +
                 ", imagePath='" + imagePath + '\'' +
                 '}';
