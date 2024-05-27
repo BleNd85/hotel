@@ -3,6 +3,7 @@ package org.hotel.services;
 import jakarta.transaction.Transactional;
 import org.hotel.models.HotelModel;
 import org.hotel.models.RoomModel;
+import org.hotel.repositories.HotelRepository;
 import org.hotel.repositories.RoomRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,11 @@ import java.util.Optional;
 @Service
 public class RoomService {
     private final RoomRepository roomRepository;
+    private final HotelRepository hotelRepository;
 
-    public RoomService(RoomRepository roomRepository) {
+    public RoomService(RoomRepository roomRepository, HotelRepository hotelRepository) {
         this.roomRepository = roomRepository;
+        this.hotelRepository = hotelRepository;
     }
 
     @Transactional
@@ -50,6 +53,7 @@ public class RoomService {
             HotelModel hotel = roomModel.getHotel();
             if (roomModel.getAmountOfPlaces() != null && hotel.getAmountOfPlaces() != null) {
                 hotel.setAmountOfPlaces(hotel.getAmountOfPlaces() - roomModel.getAmountOfPlaces());
+                hotelRepository.save(hotel);
             }
             roomRepository.deleteById(roomId);
         }

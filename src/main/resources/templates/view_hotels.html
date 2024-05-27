@@ -20,9 +20,9 @@
         </div>
     </form>
     <div class="row g-4">
-        <div class="col-12">
+        <div class="col-12 w-75">
             <a th:each="hotel : ${hotels}" th:href="@{/hotel/{id}(id=${hotel.id})}" class="text-black text-decoration-none">
-                <div class="card w-75  mt-3">
+                <div class="card mt-3">
                     <div class="row g-0">
                         <div class="col-md-8">
                             <div class="card-body p-4">
