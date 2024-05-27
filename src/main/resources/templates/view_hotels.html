@@ -12,16 +12,17 @@
 <div class="container mt-5">
     <h2 class="mb-4">Доступні готелі</h2>
     <form action="#" th:action="@{/view-hotels}" method="get">
-        <div class="input-group mb-3">
-            <input type="text" name="keyword" class="form-control" placeholder="Search by keyword"
-                   aria-label="Search by keyword" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Пошук</button>
-            <button class="btn btn-outline-secondary" type="submit">Скинути фільтри</button>
-        </div>
+            <div class="input-group mb-3 w-75">
+                <input type="text" name="keyword" class="form-control" placeholder="Search by keyword"
+                       aria-label="Search by keyword" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Пошук</button>
+                <button class="btn btn-outline-secondary" type="submit">Скинути фільтри</button>
+            </div>
     </form>
     <div class="row g-4">
         <div class="col-12 w-75">
-            <a th:each="hotel : ${hotels}" th:href="@{/hotel/{id}(id=${hotel.id})}" class="text-black text-decoration-none">
+            <a th:each="hotel : ${hotels}" th:href="@{/hotel/{id}(id=${hotel.id})}"
+               class="text-black text-decoration-none">
                 <div class="card mt-3">
                     <div class="row g-0">
                         <div class="col-md-8">
@@ -32,7 +33,8 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <img th:src="${hotel.imagePath}" class="img-fluid rounded-end img-thumbnail p-2" alt="Room Image">
+                            <img th:src="${hotel.imagePath}" class="img-fluid rounded-end img-thumbnail p-2"
+                                 alt="Room Image">
                         </div>
                     </div>
                 </div>

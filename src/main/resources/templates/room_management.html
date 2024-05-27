@@ -53,7 +53,7 @@
                 <h5 class="modal-title" id="addNumberLabel">Додати номер</h5>
             </div>
             <div class="modal-body">
-                <form th:action="@{/room-management/add-room}" method="post">
+                <form th:action="@{/room-management/add-room}" method="post" enctype="multipart/form-data">
                     <div class="form-outline mb-3">
                         <input type="text" name="name" id="name" required
                                class="form-control bg-transparent text-dark"/>
@@ -91,6 +91,10 @@
                             </option>
                         </select>
                         <label class="form-label" for="hotelId">Назва готелю</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="file" name="image" id="image" accept="image/*" class="form-control-file"/>
+                        <label class="form-label" for="image">Зображення</label>
                     </div>
                     <button type="submit" class="btn btn-dark">Додати</button>
                 </form>

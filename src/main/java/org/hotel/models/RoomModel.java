@@ -20,6 +20,7 @@ public class RoomModel {
     private Double pricePerNight;
     private Boolean isAvailable;
     private Integer amountOfPlaces = 0;
+    private String imagePath;
 
     public String getName() {
         return name;
@@ -89,6 +90,14 @@ public class RoomModel {
         return amountOfPlaces;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     public void setAmountOfPlaces(Integer amountOfPlaces) {
         this.amountOfPlaces += amountOfPlaces;
     }
@@ -118,6 +127,7 @@ public class RoomModel {
                 ", pricePerNight=" + pricePerNight +
                 ", isAvailable=" + isAvailable +
                 ", amountOfPlaces=" + amountOfPlaces +
+                ", imagePath='" + imagePath + '\'' +
                 '}';
     }
 }

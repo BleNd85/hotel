@@ -13,15 +13,13 @@ import java.util.Optional;
 @Service
 public class RoomService {
     private final RoomRepository roomRepository;
-    private final HotelRepository hotelRepository;
 
     public RoomService(RoomRepository roomRepository, HotelRepository hotelRepository) {
         this.roomRepository = roomRepository;
-        this.hotelRepository = hotelRepository;
     }
 
     @Transactional
-    public RoomModel addRoom(HotelModel hotel, String name, Double pricePerNight, Integer roomNumber, String type, String description, Integer amountOfPlaces) {
+    public RoomModel addRoom(HotelModel hotel, String name, Double pricePerNight, Integer roomNumber, String type, String description, Integer amountOfPlaces, String imagePath) {
         RoomModel roomModel = new RoomModel();
         roomModel.setName(name);
         roomModel.setPricePerNight(pricePerNight);
@@ -30,6 +28,7 @@ public class RoomService {
         roomModel.setDescription(description);
         roomModel.setHotel(hotel);
         roomModel.setAmountOfPlaces(amountOfPlaces);
+        roomModel.setImagePath(imagePath);
         hotel.setAmountOfPlaces(amountOfPlaces);
         return roomRepository.save(roomModel);
     }
