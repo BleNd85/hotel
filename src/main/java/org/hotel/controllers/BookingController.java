@@ -95,20 +95,21 @@ public class BookingController {
         UserModel user = userService.findByUsername(principal.getName());
         if (user.getId().equals(booking.getUser().getId())) {
             model.addAttribute("booking", booking);
+            model.addAttribute("PENDING", BookingStatus.PENDING);
+            model.addAttribute("ACCEPTED", BookingStatus.ACCEPTED);
+            model.addAttribute("CANCELED", BookingStatus.CANCELED);
+            model.addAttribute("COMPLETE", BookingStatus.COMPLETE);
             return "view_booking_details";
         }
         return "error_page";
     }
 
     @PostMapping("/view-bookings/booking/{id}/edit")
-    public String editBooking(@PathVariable Integer id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
-                              String comment, Principal principal) throws NameNotFoundException {
+    public String editBooking(@PathVariable Integer id, String comment, Principal principal) throws NameNotFoundException {
         UserModel user = userService.findByUsername(principal.getName());
         BookingModel booking = bookingService.findFirstById(id);
         if (booking.getUser().equals(user)) {
             booking.setBookingStatus(BookingStatus.PENDING);
-            booking.setStartDate(startDate);
-            booking.setEndDate(endDate);
             booking.setComment(comment);
             bookingService.save(booking);
             return "redirect:/view-bookings/booking/" + id;
@@ -116,12 +117,13 @@ public class BookingController {
         return "error_page";
     }
 
-    @PostMapping("/view-bookings/booking/{id}/delete")
+    @PostMapping("/view-bookings/booking/{id}/cancel")
     public String deleteBooking(@PathVariable("id") Integer id, Principal principal) throws NameNotFoundException {
         BookingModel booking = bookingService.findFirstById(id);
         UserModel user = userService.findByUsername(principal.getName());
         if (user.getId().equals(booking.getUser().getId())) {
-            bookingService.deleteBooking(id);
+            booking.setBookingStatus(BookingStatus.CANCELED);
+            bookingService.save(booking);
             return "redirect:/view-bookings";
         }
         return "error_page";

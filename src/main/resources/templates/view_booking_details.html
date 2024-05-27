@@ -9,6 +9,9 @@
 <body>
 <div th:replace="~{blocks/navbar}"></div>
 <div class="container mt-5">
+    <div th:if="${booking == null}">
+        <h4>У вас поки немає активних бронювань.</h4>
+    </div>
     <h4 class="card-title">Ваше бронювання №<span th:text="${booking.id}">номер</span></h4>
     <div class="card">
         <div class="card-body">
@@ -31,14 +34,16 @@
             <p class="card-text"><span th:text="${booking.price}">До сплати</span> <span> грн.</span></p>
             <h5 class="card-title mt-3">Місце розташування</h5>
             <p class="card-text"><span th:text="${booking.room.hotel.location}">Місце розташування</span></p>
-            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bookingEdit"
-                    th:attr="booking-id=${booking.id}">
-                Редагувати
-            </button>
-            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteBookingModal"
-                    th:attr="booking-id=${booking.id}">
-                Видалити
-            </button>
+            <div th:if="${booking.bookingStatus != CANCELED and booking.bookingStatus != COMPLETE}">
+                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bookingEdit"
+                        th:attr="booking-id=${booking.id}">
+                    Редагувати
+                </button>
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#cancelBookingModal"
+                        th:attr="booking-id=${booking.id}">
+                    Скасувати
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -51,16 +56,8 @@
             <div class="modal-body">
                 <form th:action="@{/view-bookings/booking/{id}/edit(id=${booking.id})}" method="post">
                     <div class="form-outline mb-4">
-                        <input type="date" name="startDate" id="startDateEdit" required class="form-control bg-transparent text-dark" th:value="${booking.startDate}"/>
-                        <label class="form-label" for="startDateEdit">Дата початку оренди</label>
-                    </div>
-                    <div class="form-outline mb-4">
-                        <input type="date" name="endDate" id="endDateEdit" required class="form-control bg-transparent text-dark" th:value="${booking.endDate}"/>
-                        <label class="form-label" for="endDateEdit">Дата кінця оренди</label>
-                    </div>
-                    <div class="form-outline mb-4">
                         <textarea name="comment" id="commentEdit" class="form-control bg-transparent text-dark" rows="3" th:text="${booking.comment}"></textarea>
-                        <label class="form-label" for="commentEdit">Побажання (опціонально)</label>
+                        <label class="form-label" for="commentEdit">Ваші побажання</label>
                     </div>
                     <button type="submit" class="btn btn-success">Зберегти зміни</button>
                 </form>
@@ -68,18 +65,18 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="deleteBookingModal" tabindex="-1" aria-labelledby="deleteBookingModal"
+<div class="modal fade" id="cancelBookingModal" tabindex="-1" aria-labelledby="cancelBookingModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteBookingModalLabel">Підтвердження видалення</h5>
+                <h5 class="modal-title" id="cancelBookingModalLabel">Підтвердження скасування</h5>
             </div>
             <div class="modal-body">
-                Ви дійсно хочете видалити це бронювання?
+                Ви дійсно хочете скасувати це бронювання?
             </div>
             <div class="modal-footer">
-                <form th:action="@{/view-bookings/booking/{id}/delete(id=${booking.id})}" method="post">
+                <form th:action="@{/view-bookings/booking/{id}/cancel(id=${booking.id})}" method="post">
                     <button type="submit" class="btn btn-danger">Підтвердити</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
                 </form>
