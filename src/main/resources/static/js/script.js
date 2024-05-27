@@ -6,6 +6,28 @@ deleteUserModal.addEventListener('show.bs.modal', function (event) {
     userIdInput.value = userId;
 });
 
+var editUserModal = document.getElementById('editUserModal');
+editUserModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget;
+    var userId = button.getAttribute('data-id');
+    var username = button.getAttribute('data-username');
+    var name = button.getAttribute('data-name');
+    var surname = button.getAttribute('data-surname');
+    var email = button.getAttribute('data-email');
+
+    var modalIdInput = editUserModal.querySelector('#editUserId');
+    var modalUsernameInput = editUserModal.querySelector('#editUsername');
+    var modalNameInput = editUserModal.querySelector('#editFirstName');
+    var modalSurnameInput = editUserModal.querySelector('#editLastName');
+    var modalEmailInput = editUserModal.querySelector('#editEmailAddress');
+
+    modalIdInput.value = userId;
+    modalUsernameInput.value = username;
+    modalNameInput.value = name;
+    modalSurnameInput.value = surname;
+    modalEmailInput.value = email;
+});
+
 function sortTable(table, column, asc = true) {
     const dirModifier = asc ? 1 : -1;
     const tBody = table.tBodies[0];
@@ -41,26 +63,6 @@ document.querySelector("#sortBySurname").addEventListener("click", () => {
     sortTable(tableElement, 3, !currentIsAscending);
 });
 
-var editUserModal = document.getElementById('editUserModal');
-editUserModal.addEventListener('show.bs.modal', function (event) {
-    var button = event.relatedTarget;
-    var userId = button.getAttribute('data-id');
-    var username = button.getAttribute('data-username');
-    var name = button.getAttribute('data-name');
-    var surname = button.getAttribute('data-surname');
-    var email = button.getAttribute('data-email');
 
-    var modalIdInput = editUserModal.querySelector('#editUserId');
-    var modalUsernameInput = editUserModal.querySelector('#editUsername');
-    var modalNameInput = editUserModal.querySelector('#editFirstName');
-    var modalSurnameInput = editUserModal.querySelector('#editLastName');
-    var modalEmailInput = editUserModal.querySelector('#editEmailAddress');
-
-    modalIdInput.value = userId;
-    modalUsernameInput.value = username;
-    modalNameInput.value = name;
-    modalSurnameInput.value = surname;
-    modalEmailInput.value = email;
-});
 
 

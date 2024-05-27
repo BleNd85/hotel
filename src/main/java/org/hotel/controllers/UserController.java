@@ -20,10 +20,10 @@ public class UserController {
     }
 
     @PostMapping("/user-management/edit")
-    public String editUser(@RequestParam Integer id, @RequestParam String username,
+    public String editUser(@RequestParam Integer userId, @RequestParam String username,
                            @RequestParam String name, @RequestParam String surname,
                            @RequestParam String email, Model model) {
-        UserModel updatedUser = userService.updateUser(id, username, email, name, surname);
+        UserModel updatedUser = userService.updateUser(userId, username, email, name, surname);
         if (updatedUser == null) {
             model.addAttribute("error", "An error occurred while updating the user.");
             return "error_page";

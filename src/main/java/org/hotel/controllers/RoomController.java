@@ -73,7 +73,7 @@ public class RoomController {
 
     @PostMapping("/room-management/delete-room")
     public String deleteRoom(@RequestParam Integer roomId) {
-        roomService.deleteRoom(roomId);
+        roomService.deleteRoom(roomId);;
         return "redirect:/room-management";
     }
 }
