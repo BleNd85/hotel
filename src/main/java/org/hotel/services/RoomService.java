@@ -27,6 +27,7 @@ public class RoomService {
         roomModel.setDescription(description);
         roomModel.setHotel(hotel);
         roomModel.setAmountOfPlaces(amountOfPlaces != null ? amountOfPlaces : 0);
+        hotel.setAmountOfPlaces(hotel.getAmountOfPlaces() + roomModel.getAmountOfPlaces());
         return roomRepository.save(roomModel);
     }
 

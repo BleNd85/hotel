@@ -20,6 +20,7 @@ public class HotelModel {
     @Column(nullable = false)
     private Date created_at;
     private Integer amountOfPlaces = 0;
+    private String imagePath;
 
     public Integer getId() {
         return id;
@@ -61,6 +62,13 @@ public class HotelModel {
         this.amountOfPlaces += amountOfPlaces;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -84,6 +92,7 @@ public class HotelModel {
                 ", location='" + location + '\'' +
                 ", created_at=" + created_at +
                 ", amountOfPlaces=" + amountOfPlaces +
+                ", imagePath='" + imagePath + '\'' +
                 '}';
     }
 

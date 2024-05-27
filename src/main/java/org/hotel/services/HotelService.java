@@ -22,7 +22,7 @@ public class HotelService {
     }
 
     @Transactional
-    public HotelModel addHotel(String name, String description, String location) {
+    public HotelModel addHotel(String name, String description, String location, String imagePath) {
         if (name == null) {
             return null;
         } else {
@@ -34,6 +34,7 @@ public class HotelService {
         hotelModel.setName(name);
         hotelModel.setDescription(description);
         hotelModel.setLocation(location);
+        hotelModel.setImagePath(imagePath);
         return hotelRepository.save(hotelModel);
     }
 
@@ -57,7 +58,8 @@ public class HotelService {
     public Long countHotels() {
         return hotelRepository.count();
     }
-    public Integer countPlaces(){
+
+    public Integer countPlaces() {
         List<HotelModel> hotelModelList = hotelRepository.findAll();
         int amountOfPlaces = 0;
         for (HotelModel hotelModel : hotelModelList) {
@@ -65,6 +67,7 @@ public class HotelService {
         }
         return amountOfPlaces;
     }
+
     public List<HotelModel> searchHotels(String keyword) {
         return hotelRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrLocationContainingIgnoreCase(keyword, keyword, keyword);
     }

@@ -50,21 +50,22 @@
                 <h5 class="modal-title" id="addHotelLabel">Додати готель</h5>
             </div>
             <div class="modal-body">
-                <form th:action="@{/hotel-management/add-hotel}" method="post">
+                <form th:action="@{/hotel-management/add-hotel}" method="post" enctype="multipart/form-data">
                     <div class="form-outline mb-3">
-                        <input type="text" name="name" id="name" required
-                               class="form-control bg-transparent text-dark"/>
+                        <input type="text" name="name" id="name" required class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="name">Назва</label>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="text" name="description" id="description" required
-                               class="form-control bg-transparent text-dark"/>
+                        <input type="text" name="description" id="description" required class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="description">Опис</label>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="text" name="location" id="location" required
-                               class="form-control bg-transparent text-dark"/>
+                        <input type="text" name="location" id="location" required class="form-control bg-transparent text-dark"/>
                         <label class="form-label" for="location">Місцезнаходження</label>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="file" name="image" id="image" accept="image/*" class="form-control-file"/>
+                        <label class="form-label" for="image">Зображення</label>
                     </div>
                     <button type="submit" class="btn btn-dark">Додати</button>
                 </form>

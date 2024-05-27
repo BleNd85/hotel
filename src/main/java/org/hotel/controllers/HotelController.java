@@ -1,19 +1,31 @@
+// HotelController.java
 package org.hotel.controllers;
 
 import org.hotel.models.HotelModel;
 import org.hotel.models.RoomModel;
 import org.hotel.services.HotelService;
 import org.hotel.services.RoomService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Comparator;
+import java.io.IOException;
+import java.lang.reflect.MalformedParameterizedTypeException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class HotelController {
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
     private final HotelService hotelService;
     private final RoomService roomService;
@@ -48,8 +60,22 @@ public class HotelController {
     }
 
     @PostMapping("/hotel-management/add-hotel")
-    public String addHotel(@ModelAttribute HotelModel hotelModel) {
-        HotelModel registeredHotel = hotelService.addHotel(hotelModel.getName(), hotelModel.getDescription(), hotelModel.getLocation());
+    public String addHotel(@ModelAttribute HotelModel hotelModel, @RequestParam("image") MultipartFile imageFile, Model model) {
+        String imagePath = null;
+        if (!imageFile.isEmpty()) {
+            try {
+                String fileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
+                Path filePath = Paths.get(uploadDir, fileName);
+                Files.createDirectories(((Path) filePath).getParent());
+                Files.copy(imageFile.getInputStream(), filePath);
+                imagePath = "/images/hotelsAndRoomsImages/" + fileName;
+                hotelModel.setImagePath(imagePath);
+            } catch (IOException e) {
+                model.addAttribute("errorMessage", "Error uploading image: " + e.getMessage());
+                return "error_page";
+            }
+        }
+        HotelModel registeredHotel = hotelService.addHotel(hotelModel.getName(), hotelModel.getDescription(), hotelModel.getLocation(), hotelModel.getImagePath());
         return registeredHotel == null ? "error_page" : "redirect:/hotel-management";
     }
 
