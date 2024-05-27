@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -46,9 +47,27 @@ public class UserController {
         return "login";
     }
 
+
     @GetMapping("/user-management")
-    public String getCustomerManagement(Model model) {
-        List<UserModel> users = userService.getAll();
+    public String getCustomerManagement(
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "sortBy", required = false) String sortBy,
+            Model model) {
+
+        List<UserModel> users;
+
+        if (keyword != null && !keyword.isEmpty()) {
+            users = userService.searchUsers(keyword);
+        } else {
+            users = userService.getAll();
+        }
+
+        if ("name".equals(sortBy)) {
+            users.sort(Comparator.comparing(UserModel::getName));
+        } else if ("surname".equals(sortBy)) {
+            users.sort(Comparator.comparing(UserModel::getSurname));
+        }
+
         model.addAttribute("users", users);
         return "user_management";
     }

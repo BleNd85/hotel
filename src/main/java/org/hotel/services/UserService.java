@@ -87,5 +87,9 @@ public class UserService {
     public UserModel findById(Integer id) {
         return userRepository.findFirstById(id).orElse(null);
     }
+    public List<UserModel> searchUsers(String keyword) {
+        return userRepository.findByUsernameContainingOrNameContainingOrSurnameContainingOrEmailContaining(
+                keyword, keyword, keyword, keyword);
+    }
 
 }
