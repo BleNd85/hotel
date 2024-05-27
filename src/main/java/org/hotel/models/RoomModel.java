@@ -19,7 +19,7 @@ public class RoomModel {
     private String description;
     private Double pricePerNight;
     private Boolean isAvailable;
-    private Integer amountOfPlaces;
+    private Integer amountOfPlaces = 0;
 
     public String getName() {
         return name;
@@ -90,7 +90,7 @@ public class RoomModel {
     }
 
     public void setAmountOfPlaces(Integer amountOfPlaces) {
-        this.amountOfPlaces = amountOfPlaces;
+        this.amountOfPlaces += amountOfPlaces;
     }
 
     @Override

@@ -29,8 +29,8 @@ public class RoomService {
         roomModel.setType(type);
         roomModel.setDescription(description);
         roomModel.setHotel(hotel);
-        roomModel.setAmountOfPlaces(amountOfPlaces != null ? amountOfPlaces : 0);
-        hotel.setAmountOfPlaces(hotel.getAmountOfPlaces() + roomModel.getAmountOfPlaces());
+        roomModel.setAmountOfPlaces(amountOfPlaces);
+        hotel.setAmountOfPlaces(amountOfPlaces);
         return roomRepository.save(roomModel);
     }
 
@@ -51,10 +51,7 @@ public class RoomService {
         RoomModel roomModel = roomRepository.findById(roomId).orElse(null);
         if (roomModel != null) {
             HotelModel hotel = roomModel.getHotel();
-            if (roomModel.getAmountOfPlaces() != null && hotel.getAmountOfPlaces() != null) {
-                hotel.setAmountOfPlaces(hotel.getAmountOfPlaces() - roomModel.getAmountOfPlaces());
-                hotelRepository.save(hotel);
-            }
+            hotel.setAmountOfPlaces(-roomModel.getAmountOfPlaces());
             roomRepository.deleteById(roomId);
         }
     }
